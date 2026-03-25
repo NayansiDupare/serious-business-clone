@@ -1,65 +1,107 @@
-import Image from "next/image";
+"use client";
+
+import Navbar from "./components/layout/Navbar"
+import StackContainer from "./components/layout/StackContainer"
+import StackSection from "./components/layout/StackSection";
+import Hero, { HeroTopText } from "./components/sections/Hero";
+import About from "./components/sections/About";
+import ServiceBlock, { StrategyImage, VisualImage, WebsiteImage, ProductImage } from "./components/sections/Services";
+import Works from "./components/sections/Works";
+import Footer from "./components/sections/Footer";
+import Insights from "./components/sections/Insights";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function Home() {
+  const insightsRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: insightsRef,
+    offset: ["start 90%", "end 20%"]
+  });
+
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    ["#ff8cc2", "#1a1a1a", "#1a1a1a", "#ff8cc2"]
+  );
+
+  const color = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    ["#1a1a1a", "#ff8cc2", "#ff8cc2", "#1a1a1a"]
+  );
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <motion.main style={{ backgroundColor, color }} className="transition-colors duration-500">
+      <HeroTopText />
+
+      <div className="relative w-full">
+        {/* Sticky wrapper for Navbar */}
+        <div className="sticky top-6 w-full h-0 z-[100] px-6">
+          <Navbar />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <Hero />
+        <About />
+
+        <StackContainer>
+        {/* Sticky Services Label */}
+        <div className="sticky top-0 w-full h-[8vh] bg-primary z-10 flex items-end pb-2 px-6">
+          <span className="text-xl font-bold tracking-tighter text-[#1a1a1a]">Services</span>
         </div>
-      </main>
-    </div>
+
+        {/* SERVICES: Brand Strategy */}
+        <StackSection bg="#cba6f7" z={20} topOffset="80px">
+          <ServiceBlock
+            title="Brand Strategy"
+            description="It's the core of your company's identity. It guides all business decisions, ensuring a consistent and impactful presence in the market."
+            list={["Research & Insights", "Brand Model", "Positioning", "Value proposition", "Messaging", "Verbal identity", "Naming"]}
+            imageContent={<StrategyImage />}
+          />
+        </StackSection>
+
+        {/* SERVICES: Visual Identity */}
+        <StackSection bg="#ffffff" z={30} topOffset="80px">
+          <ServiceBlock
+            title="Visual Identity"
+            description="Visual identity is the unique visual language of your brand, creating memorable impressions and emotional connections with your audience."
+            list={["Logotype, Typography & Colour", "Visual Language", "Illustrations & 3D", "Art Direction", "Brandbook & Guidelines", "Motion Design", "Brand Applications"]}
+            imageContent={<VisualImage />}
+          />
+        </StackSection>
+
+        {/* SERVICES: Website */}
+        <StackSection bg="#fac541" z={40} topOffset="80px">
+          <ServiceBlock
+            title="Website"
+            description="Our website design services blend innovation and creativity to deliver user-centric solutions that elevate your brand and engage your audience."
+            list={["UX Design", "Website Design", "Responsive Design", "Website Motion", "Animations"]}
+            imageContent={<WebsiteImage />}
+          />
+        </StackSection>
+
+        {/* SERVICES: Product */}
+        <StackSection bg="#1a1a1a" z={50} topOffset="80px">
+          <ServiceBlock
+            title="Product"
+            description="Our product design services focus on creating intuitive and aesthetically pleasing products that resonate with your audience and stand out in the market."
+            list={["UX Design", "User Testing", "Prototyping", "UI Design", "App Design", "Interaction Design"]}
+            textColor="text-[#ffffff]"
+            imageContent={<ProductImage />}
+          />
+        </StackSection>
+      </StackContainer>
+
+      {/* WORKS, INSIGHTS & FOOTER */}
+      <div className="relative z-[50]">
+        <Works />
+        <div ref={insightsRef} className="w-full">
+          <Insights />
+        </div>
+        <Footer />
+      </div>
+      </div>
+    </motion.main>
   );
 }
