@@ -10,10 +10,21 @@ import Works from "./components/sections/Works";
 import Footer from "./components/sections/Footer";
 import Insights from "./components/sections/Insights";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function Home() {
   const insightsRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const serviceTopOffset = isMobile ? "150px" : "80px";
+  const labelTop = isMobile ? "80px" : "0px";
   
   const { scrollYProgress } = useScroll({
     target: insightsRef,
@@ -46,12 +57,15 @@ export default function Home() {
 
         <StackContainer>
         {/* Sticky Services Label */}
-        <div className="sticky top-0 w-full h-[8vh] bg-primary z-10 flex items-end pb-2 px-6">
+        <div 
+          className="sticky w-full h-[8vh] bg-primary z-10 flex items-end pb-2 px-6"
+          style={{ top: labelTop }}
+        >
           <span className="text-xl font-bold tracking-tighter text-[#1a1a1a]">Services</span>
         </div>
 
         {/* SERVICES: Brand Strategy */}
-        <StackSection bg="#cba6f7" z={20} topOffset="80px">
+        <StackSection bg="#cba6f7" z={20} topOffset={serviceTopOffset}>
           <ServiceBlock
             title="Brand Strategy"
             description="It's the core of your company's identity. It guides all business decisions, ensuring a consistent and impactful presence in the market."
@@ -62,7 +76,7 @@ export default function Home() {
         </StackSection>
 
         {/* SERVICES: Visual Identity */}
-        <StackSection bg="#ffffff" z={30} topOffset="80px">
+        <StackSection bg="#ffffff" z={30} topOffset={serviceTopOffset}>
           <ServiceBlock
             title="Visual Identity"
             description="Visual identity is the unique visual language of your brand, creating memorable impressions and emotional connections with your audience."
@@ -73,7 +87,7 @@ export default function Home() {
         </StackSection>
 
         {/* SERVICES: Website */}
-        <StackSection bg="#fac541" z={40} topOffset="80px">
+        <StackSection bg="#fac541" z={40} topOffset={serviceTopOffset}>
           <ServiceBlock
             title="Website"
             description="Our website design services blend innovation and creativity to deliver user-centric solutions that elevate your brand and engage your audience."
@@ -84,7 +98,7 @@ export default function Home() {
         </StackSection>
 
         {/* SERVICES: Product */}
-        <StackSection bg="#1a1a1a" z={50} topOffset="80px">
+        <StackSection bg="#1a1a1a" z={50} topOffset={serviceTopOffset}>
           <ServiceBlock
             title="Product"
             description="Our product design services focus on creating intuitive and aesthetically pleasing products that resonate with your audience and stand out in the market."

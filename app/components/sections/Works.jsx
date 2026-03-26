@@ -54,7 +54,7 @@ export default function Works() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="text-[12vw] md:text-[7vw] lg:text-[5vw] font-black leading-[0.9] uppercase mb-16 text-inherit" 
+        className="text-[clamp(1.8rem,10vw,5rem)] md:text-[7vw] lg:text-[5vw] font-black leading-[0.9] uppercase mb-16 text-inherit" 
         style={{ fontFamily: "var(--font-geist-sans)" }}
       >
         We partner with serious <br className="hidden md:block"/> scaleups in Europe <br className="hidden md:block"/> and the Americas

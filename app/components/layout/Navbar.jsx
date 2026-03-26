@@ -127,7 +127,7 @@ export default function Navbar() {
       initial={{ opacity: 1 }}
       animate={{ y: hideNavbar ? -100 : 0, opacity: hideNavbar ? 0 : 1 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="w-full flex items-center justify-between px-8 py-8 pointer-events-none z-[100]"
+      className="w-full flex items-center justify-between px-4 md:px-8 py-4 md:py-8 pointer-events-none z-[100]"
     >
       {/* Left: Let's Work */}
       <NavButton 

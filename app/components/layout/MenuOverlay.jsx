@@ -51,7 +51,7 @@ export default function MenuOverlay({ isOpen, onClose }) {
                 <a 
                   href={`#${link.toLowerCase()}`} 
                   onClick={onClose}
-                  className="text-[10vw] md:text-[6vw] font-black tracking-tighter hover-underline cursor-none" 
+                  className="text-[2.5rem] md:text-[6vw] font-black tracking-tighter hover-underline cursor-none" 
                   style={{ fontFamily: "var(--font-geist-sans)" }}
                 >
                   {link}

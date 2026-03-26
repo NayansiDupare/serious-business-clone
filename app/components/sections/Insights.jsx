@@ -7,18 +7,18 @@ export default function Insights() {
     <div className="w-full px-6 py-32 max-w-[1400px] mx-auto">
       
       {/* Header */}
-      <div className="flex justify-between items-end mb-16 overflow-hidden">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 overflow-hidden gap-6">
         <motion.h2 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-[5vw] font-black leading-none tracking-tight" 
+          className="text-[1.8rem] sm:text-[2.5rem] md:text-[5vw] font-black leading-none tracking-tight" 
           style={{ fontFamily: "var(--font-geist-sans)" }}
         >
           Latest insights for scaleup teams
         </motion.h2>
-        <button className="px-6 py-2 border rounded-full text-sm font-semibold hover:bg-[currentColor] hover:text-[#1a1a1a] transition-colors whitespace-nowrap mb-2 border-current">
+        <button className="px-6 py-2 border rounded-full text-sm font-semibold hover:bg-[currentColor] hover:text-[#1a1a1a] transition-colors whitespace-nowrap border-current">
           What's trending. <span className="ml-2">←</span>
         </button>
       </div>

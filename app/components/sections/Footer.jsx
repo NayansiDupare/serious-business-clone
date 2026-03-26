@@ -12,7 +12,7 @@ export default function Footer() {
             <span className="font-bold">You feel it too?</span><br />
             Let's talk, no strings attached
           </p>
-          <h2 className="text-[12vw] md:text-[64px] font-bold tracking-tight leading-none group-hover:pl-2 transition-all duration-300" style={{ fontFamily: "var(--font-geist-sans)" }}>
+          <h2 className="text-[10vw] md:text-[64px] font-bold tracking-tight leading-none group-hover:pl-2 transition-all duration-300" style={{ fontFamily: "var(--font-geist-sans)" }}>
             Send Request
           </h2>
         </div>
@@ -23,7 +23,7 @@ export default function Footer() {
             Our free offer for B2B tech scaleups!<br />
             We identify high-impact messaging and brand fixes you can implement within 24 hours.
           </p>
-          <h2 className="text-[12vw] md:text-[64px] font-bold tracking-tight leading-none group-hover:pl-2 transition-all duration-300" style={{ fontFamily: "var(--font-geist-sans)" }}>
+          <h2 className="text-[10vw] md:text-[64px] font-bold tracking-tight leading-none group-hover:pl-2 transition-all duration-300" style={{ fontFamily: "var(--font-geist-sans)" }}>
             Brand <br className="hidden md:block"/> Masterplan
           </h2>
         </div>
@@ -32,32 +32,32 @@ export default function Footer() {
       {/* Grid Links Section */}
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between mb-32 text-base font-medium tracking-tight">
         <div className="flex flex-col md:flex-row gap-12 flex-1">
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <h4 className="text-[10px] uppercase font-bold tracking-widest mt-1">Explore</h4>
-            <ul className="space-y-1 text-xl">
+            <ul className="space-y-1 text-xl sm:text-lg">
               <li><a href="#" className="hover:opacity-60 transition-opacity">Work</a></li>
               <li><a href="#" className="hover:opacity-60 transition-opacity">About</a></li>
               <li><a href="#" className="hover:opacity-60 transition-opacity">Services</a></li>
               <li><a href="#" className="hover:opacity-60 transition-opacity">Blog</a></li>
             </ul>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <h4 className="text-[10px] uppercase font-bold tracking-widest mt-1">Stalk us</h4>
-            <ul className="space-y-1 text-xl">
+            <ul className="space-y-1 text-xl sm:text-lg">
               <li><a href="#" className="hover:opacity-60 transition-opacity">LinkedIn</a></li>
               <li><a href="#" className="hover:opacity-60 transition-opacity">Instagram</a></li>
             </ul>
           </div>
         </div>
         
-        <div className="flex flex-col gap-8 text-right mt-12 md:mt-0">
+        <div className="flex flex-col gap-8 text-left md:text-right mt-12 md:mt-0">
           <div>
             <h4 className="text-[10px] uppercase font-bold tracking-widest mb-1">Say Hello</h4>
-            <a href="mailto:hello@serious.business" className="text-xl hover:opacity-60 transition-opacity">hello@serious.business</a>
+            <a href="mailto:hello@serious.business" className="text-xl md:text-lg hover:opacity-60 transition-opacity">hello@serious.business</a>
           </div>
           <div>
             <h4 className="text-[10px] uppercase font-bold tracking-widest mb-1">Exceptional talent?</h4>
-            <a href="mailto:apply@serious.business" className="text-xl hover:opacity-60 transition-opacity">apply@serious.business</a>
+            <a href="mailto:apply@serious.business" className="text-xl md:text-lg hover:opacity-60 transition-opacity">apply@serious.business</a>
           </div>
         </div>
       </div>
