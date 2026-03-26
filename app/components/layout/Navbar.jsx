@@ -17,11 +17,10 @@ const NavButton = ({ text, hoverText, icon, hoverIcon, onClick, isLetsWork = fal
   const [isHovered, setIsHovered] = useState(false);
   const iconWrapperRef = useRef(null);
 
-  // Smooth GSAP animation for the smile
   useEffect(() => {
     if (isLetsWork && iconWrapperRef.current) {
       if (isHovered) {
-        gsap.fromTo(iconWrapperRef.current, 
+        gsap.fromTo(iconWrapperRef.current,
           { scale: 0, rotate: -180, opacity: 0 },
           { scale: 1, rotate: 0, opacity: 1, duration: 0.6, ease: "power4.out" }
         );
@@ -29,11 +28,10 @@ const NavButton = ({ text, hoverText, icon, hoverIcon, onClick, isLetsWork = fal
     }
   }, [isHovered, isLetsWork]);
 
-  // Static colors as requested - NO CHANGE ON HOVER
   const staticStyle = { backgroundColor: "#ffffff", color: "#1a1a1a" };
 
   return (
-    <motion.div 
+    <motion.div
       initial="initial"
       whileHover="hover"
       onHoverStart={() => setIsHovered(true)}
@@ -41,13 +39,11 @@ const NavButton = ({ text, hoverText, icon, hoverIcon, onClick, isLetsWork = fal
       className="flex items-center gap-1.5 pointer-events-auto cursor-none shrink-0"
       onClick={onClick}
     >
-      <motion.div 
+      <motion.div
         layout
         style={staticStyle}
-        transition={{ 
-          layout: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } // Premium smooth ease
-        }}
-        className="px-6 py-3 rounded-full shadow-sm font-bold text-sm flex items-center overflow-hidden h-[44px]"
+        transition={{ layout: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }}
+        className="px-3 py-2 md:px-6 md:py-3 rounded-full shadow-sm font-bold text-xs md:text-sm flex items-center overflow-hidden"
       >
         <AnimatePresence mode="wait">
           {!isHovered ? (
@@ -74,16 +70,15 @@ const NavButton = ({ text, hoverText, icon, hoverIcon, onClick, isLetsWork = fal
           )}
         </AnimatePresence>
       </motion.div>
-      
-      {/* Circle with Icon - Color REMAIN STATIC */}
-      <motion.div 
+
+      <motion.div
         style={staticStyle}
-        animate={{ 
+        animate={{
           opacity: (isLetsWork && !isHovered && !icon) ? 0 : 1,
           scale: (isLetsWork && !isHovered && !icon) ? 0.8 : 1,
           rotate: isHovered ? 360 : 0
         }}
-        transition={{ 
+        transition={{
           rotate: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
           opacity: { duration: 0.3 },
           scale: { duration: 0.3 }
@@ -91,14 +86,14 @@ const NavButton = ({ text, hoverText, icon, hoverIcon, onClick, isLetsWork = fal
         className="w-8 h-8 md:w-11 md:h-11 rounded-full shadow-sm flex items-center justify-center text-base md:text-xl flex-shrink-0 relative"
       >
         <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300" style={{ opacity: isHovered ? 0 : 1 }}>
-           {icon}
+          {icon}
         </div>
-        <div 
+        <div
           ref={iconWrapperRef}
-          className="absolute inset-0 flex items-center justify-center" 
+          className="absolute inset-0 flex items-center justify-center"
           style={{ opacity: isHovered ? 1 : 0 }}
         >
-           {hoverIcon}
+          {hoverIcon}
         </div>
       </motion.div>
     </motion.div>
@@ -123,21 +118,31 @@ export default function Navbar() {
   }, [scrollY]);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 1 }}
       animate={{ y: hideNavbar ? -100 : 0, opacity: hideNavbar ? 0 : 1 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="w-full flex items-center justify-between px-8 py-8 pointer-events-none z-[100]"
+      className="w-full flex items-center justify-between px-4 py-4 md:px-8 md:py-8 pointer-events-none z-[100]"
     >
-      {/* Left: Let's Work */}
-      <NavButton 
-        text="Let's work" 
-        icon={null} 
-        hoverIcon={<SmileIcon />} 
-        isLetsWork={true}
-      />
+      {/* Mobile: brand logo | Desktop: Let's Work button */}
+      <div className="md:hidden pointer-events-auto">
+        <span
+          className="font-black tracking-tighter text-[#1a1a1a] text-base select-none"
+          style={{ fontFamily: "var(--font-geist-sans)", letterSpacing: "-0.03em" }}
+        >
+          SERIOUS.BUSINESS
+        </span>
+      </div>
+      <div className="hidden md:flex">
+        <NavButton
+          text="Let's work"
+          icon={null}
+          hoverIcon={<SmileIcon />}
+          isLetsWork={true}
+        />
+      </div>
 
-      {/* Center: Logo */}
+      {/* Center: scroll-triggered logo */}
       <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none">
         <AnimatePresence>
           {showCenterLogo && (
@@ -145,7 +150,7 @@ export default function Navbar() {
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 10 }}
-              className="text-xl font-black tracking-tighter text-[#1a1a1a] pointer-events-auto"
+              className="text-base md:text-xl font-black tracking-tighter text-[#1a1a1a] pointer-events-auto"
               style={{ fontFamily: "var(--font-geist-sans)" }}
             >
               SERIOUS.BUSINESS
@@ -154,18 +159,18 @@ export default function Navbar() {
         </AnimatePresence>
       </div>
 
-      {/* Right: Menu */}
-      <NavButton 
-        text="Menu" 
+      {/* Right: Let's work + menu dots (mobile) | Menu (desktop) */}
+      <NavButton
+        text="Let's work"
         hoverText={
-          <div className="flex gap-6">
+          <div className="hidden md:flex gap-6">
             <span className="hover:opacity-60 transition-opacity">Work</span>
             <span className="hover:opacity-60 transition-opacity">About</span>
             <span className="hover:opacity-60 transition-opacity">Services</span>
             <span className="hover:opacity-60 transition-opacity">Blog</span>
           </div>
         }
-        icon={<span className="leading-none text-xl">←</span>} 
+        icon={<span className="leading-none tracking-widest text-sm">•••</span>}
         hoverIcon={<span className="leading-none text-xl">↘</span>}
         onClick={() => setMenuOpen(true)}
       />
