@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
 import AnimatedCounter from "../ui/AnimatedCounter";
 
 export default function ServiceBlock({
@@ -11,13 +10,6 @@ export default function ServiceBlock({
   textColor = "text-[#1a1a1a]",
   imageContent,
   direction = "left",
-}: {
-  title: string;
-  description: string;
-  list: string[];
-  textColor?: string;
-  imageContent?: ReactNode;
-  direction?: "left" | "right";
 }) {
   return (
     <div className={`w-full h-auto flex flex-col md:flex-row px-6 md:px-12 py-16 md:py-20 lg:py-24 ${textColor}`}>

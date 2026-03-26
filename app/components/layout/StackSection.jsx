@@ -5,11 +5,6 @@ export default function StackSection({
   bg,
   z,
   topOffset = "0px"
-}: {
-  children: React.ReactNode;
-  bg: string;
-  z: number;
-  topOffset?: string;
 }) {
   return (
     <section

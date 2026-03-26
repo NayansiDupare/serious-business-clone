@@ -3,8 +3,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-export default function ThemeTransition({ children }: { children: React.ReactNode }) {
-  const containerRef = useRef<HTMLDivElement>(null);
+export default function ThemeTransition({ children }) {
+  const containerRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,

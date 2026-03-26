@@ -17,11 +17,11 @@ const projects = [
 ];
 
 export default function Works() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const images = gsap.utils.toArray<HTMLElement>('.parallax-img');
+      const images = gsap.utils.toArray('.parallax-img');
       images.forEach((img) => {
         gsap.to(img, {
           yPercent: 15,

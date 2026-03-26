@@ -1,6 +1,6 @@
-import { Variants } from "framer-motion";
 
-export const textContainer: Variants = {
+
+export const textContainer = {
   hidden: {},
   show: {
     transition: {
@@ -9,7 +9,7 @@ export const textContainer: Variants = {
   },
 };
 
-export const textChild: Variants = {
+export const textChild = {
   hidden: {
     y: 100,
     opacity: 0,
@@ -19,7 +19,7 @@ export const textChild: Variants = {
     opacity: 1,
     transition: {
       duration: 0.8,
-      ease: [0.25, 1, 0.5, 1] as const, // ✅ FIX HERE
+      ease: [0.25, 1, 0.5, 1], // ✅ FIX HERE
     },
   },
 };

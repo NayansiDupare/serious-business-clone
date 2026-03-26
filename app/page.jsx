@@ -13,7 +13,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 export default function Home() {
-  const insightsRef = useRef<HTMLDivElement>(null);
+  const insightsRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
     target: insightsRef,
@@ -37,8 +37,7 @@ export default function Home() {
       <HeroTopText />
 
       <div className="relative w-full">
-        {/* Sticky wrapper for Navbar */}
-        <div className="sticky top-6 w-full h-0 z-[100] px-6">
+        <div className="sticky top-0 w-full z-[100] h-0">
           <Navbar />
         </div>
 

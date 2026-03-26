@@ -69,7 +69,7 @@ export default function Hero() {
   // Fade out center text shortly after scroll begins
   const textOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
-  const orbRef = useRef<HTMLDivElement>(null);
+  const orbRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {

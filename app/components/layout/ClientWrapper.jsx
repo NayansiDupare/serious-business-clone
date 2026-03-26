@@ -5,8 +5,6 @@ import Loader from "../ui/Loader";
 
 export default function ClientWrapper({
   children,
-}: {
-  children: React.ReactNode;
 }) {
   const [loading, setLoading] = useState(true);
 

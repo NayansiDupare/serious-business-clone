@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const links = ["Work", "Services", "About", "Insights", "Contact"];
 
-export default function MenuOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function MenuOverlay({ isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (

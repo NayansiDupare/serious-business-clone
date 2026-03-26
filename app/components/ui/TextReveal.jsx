@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-export default function TextReveal({ text }: { text: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
+export default function TextReveal({ text }) {
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const words = containerRef.current?.querySelectorAll(".word");

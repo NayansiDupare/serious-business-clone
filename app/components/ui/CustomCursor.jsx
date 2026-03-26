@@ -6,8 +6,8 @@ export default function CustomCursor() {
   const [mounted, setMounted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
   
   const mousePos = useRef({ x: -100, y: -100 });
   const ringPos = useRef({ x: -100, y: -100 });
@@ -15,7 +15,7 @@ export default function CustomCursor() {
   useEffect(() => {
     setMounted(true);
     
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e) => {
       mousePos.current.x = e.clientX;
       mousePos.current.y = e.clientY;
       
@@ -24,8 +24,8 @@ export default function CustomCursor() {
       }
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+    const handleMouseOver = (e) => {
+      const target = e.target;
       if (target.closest('a') || target.closest('button') || target.closest('.group') || target.closest('.pointer-events-auto')) {
         setIsHovering(true);
       } else {
@@ -36,7 +36,7 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseover", handleMouseOver);
     
-    let animationFrameId: number;
+    let animationFrameId;
     
     const render = () => {
       // Lerp for the ring

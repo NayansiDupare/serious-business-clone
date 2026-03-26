@@ -5,12 +5,9 @@ import { useEffect, useRef, useState } from "react";
 export default function AnimatedCounter({ 
   value, 
   duration = 1.5 
-}: { 
-  value: number; 
-  duration?: number;
 }) {
   const [count, setCount] = useState(0);
-  const elementRef = useRef<HTMLSpanElement>(null);
+  const elementRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
@@ -30,7 +27,7 @@ export default function AnimatedCounter({
     const end = value;
     const startTimeElement = performance.now();
 
-    const animateCount = (currentTime: number) => {
+    const animateCount = (currentTime) => {
       const elapsed = currentTime - startTimeElement;
       const progress = Math.min(elapsed / (duration * 1000), 1);
       

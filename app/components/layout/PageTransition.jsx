@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
-export default function PageTransition({ children }: any) {
+export default function PageTransition({ children }) {
   const pathname = usePathname();
 
   return (
