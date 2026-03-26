@@ -127,7 +127,10 @@ export default function Navbar() {
       const scrollHeight = document.documentElement.scrollHeight;
       const clientHeight = window.innerHeight;
       const maxScroll = scrollHeight - clientHeight;
-      setHideNavbar(latest > maxScroll - 600);
+      
+      // Only hide navbar if the page is long enough (> 1000px scrollable) 
+      // and we are near the very bottom
+      setHideNavbar(maxScroll > 1000 && latest > maxScroll - 400);
     });
   }, [scrollY]);
 
