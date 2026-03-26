@@ -12,7 +12,7 @@ export default function About() {
         <div className="md:col-span-4 flex flex-col justify-center">
           <div className="flex items-center justify-between border-b border-black mb-6 pb-2 text-sm font-semibold tracking-wider uppercase">
             <span>Serious Facts</span>
-            <span>04 / 05</span>
+            <span>02 / 05</span>
           </div>
 
           <motion.div
@@ -22,9 +22,9 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-[3rem] md:text-[5rem] font-medium leading-none mb-4" style={{ fontFamily: "var(--font-geist-sans)" }}>
-              <AnimatedCounter value={3} />
+              <AnimatedCounter value={320} suffix="M€" />
             </h3>
-            <p className="text-sm font-medium tracking-wide">Agency of the Year Nominations</p>
+            <p className="text-sm font-medium tracking-wide">of funding raised by our clients in the past 3 years subsequently to projects</p>
           </motion.div>
 
           <div className="flex items-center gap-3 mt-12">

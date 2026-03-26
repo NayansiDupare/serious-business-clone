@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function AnimatedCounter({ 
-  value, 
-  duration = 1.5 
+export default function AnimatedCounter({
+  value,
+  duration = 1.5,
+  suffix = ""
 }) {
   const [count, setCount] = useState(0);
   const elementRef = useRef(null);
@@ -47,5 +48,5 @@ export default function AnimatedCounter({
     requestAnimationFrame(animateCount);
   }, [isInView, value, duration]);
 
-  return <span ref={elementRef}>{count}</span>;
+  return <span ref={elementRef}>{count}{suffix}</span>;
 }
