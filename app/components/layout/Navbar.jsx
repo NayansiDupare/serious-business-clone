@@ -15,30 +15,22 @@ const SmileIcon = () => (
 
 const NavButton = ({ text, hoverText, icon, hoverIcon, onClick, isLetsWork = false }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const circleRef = useRef(null);
   const iconWrapperRef = useRef(null);
 
-  // GSAP animation for the smile appearing "from back with circulling"
+  // Smooth GSAP animation for the smile
   useEffect(() => {
     if (isLetsWork && iconWrapperRef.current) {
       if (isHovered) {
         gsap.fromTo(iconWrapperRef.current, 
           { scale: 0, rotate: -180, opacity: 0 },
-          { scale: 1, rotate: 0, opacity: 1, duration: 0.5, ease: "back.out(1.7)" }
+          { scale: 1, rotate: 0, opacity: 1, duration: 0.6, ease: "power4.out" }
         );
       }
     }
   }, [isHovered, isLetsWork]);
 
-  const pillVariants = {
-    initial: { backgroundColor: "#ffffff", color: "#1a1a1a" },
-    hover: { backgroundColor: "#1a1a1a", color: "#ffffff" }
-  };
-
-  const circleVariants = {
-    initial: { backgroundColor: "#ffffff", color: "#1a1a1a" },
-    hover: { backgroundColor: "#1a1a1a", color: "#ffffff" }
-  };
+  // Static colors as requested - NO CHANGE ON HOVER
+  const staticStyle = { backgroundColor: "#ffffff", color: "#1a1a1a" };
 
   return (
     <motion.div 
@@ -51,31 +43,30 @@ const NavButton = ({ text, hoverText, icon, hoverIcon, onClick, isLetsWork = fal
     >
       <motion.div 
         layout
-        variants={pillVariants}
+        style={staticStyle}
         transition={{ 
-          duration: 0.3,
-          layout: { duration: 0.4, ease: [0.33, 1, 0.68, 1] }
+          layout: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } // Premium smooth ease
         }}
-        className="px-6 py-3 rounded-full shadow-sm font-bold text-sm flex items-center overflow-hidden"
+        className="px-6 py-3 rounded-full shadow-sm font-bold text-sm flex items-center overflow-hidden h-[44px]"
       >
         <AnimatePresence mode="wait">
           {!isHovered ? (
             <motion.span
               key="text"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, filter: "blur(4px)" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               {text}
             </motion.span>
           ) : (
             <motion.div
               key="hoverText"
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, filter: "blur(4px)" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               className="flex gap-6 whitespace-nowrap"
             >
               {hoverText || text}
@@ -84,24 +75,22 @@ const NavButton = ({ text, hoverText, icon, hoverIcon, onClick, isLetsWork = fal
         </AnimatePresence>
       </motion.div>
       
-      {/* Circle with Icon */}
-      {/* Always show circle for Menu, only on hover or if icon exists for others */}
+      {/* Circle with Icon - Color REMAIN STATIC */}
       <motion.div 
-        ref={circleRef}
-        variants={circleVariants}
-        transition={{ 
-          backgroundColor: { duration: 0.3 },
-          color: { duration: 0.3 }
-        }}
-        // Ensure circle is hidden if no icon and not hovered for Let's Work
+        style={staticStyle}
         animate={{ 
           opacity: (isLetsWork && !isHovered && !icon) ? 0 : 1,
           scale: (isLetsWork && !isHovered && !icon) ? 0.8 : 1,
           rotate: isHovered ? 360 : 0
         }}
+        transition={{ 
+          rotate: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+          opacity: { duration: 0.3 },
+          scale: { duration: 0.3 }
+        }}
         className="w-11 h-11 rounded-full shadow-sm flex items-center justify-center text-xl flex-shrink-0 relative"
       >
-        <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-200" style={{ opacity: isHovered ? 0 : 1 }}>
+        <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300" style={{ opacity: isHovered ? 0 : 1 }}>
            {icon}
         </div>
         <div 
@@ -124,20 +113,12 @@ export default function Navbar() {
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
-      if (latest > 300) {
-        setShowCenterLogo(true);
-      } else {
-        setShowCenterLogo(false);
-      }
+      setShowCenterLogo(latest > 300);
 
       const scrollHeight = document.documentElement.scrollHeight;
       const clientHeight = window.innerHeight;
       const maxScroll = scrollHeight - clientHeight;
-      if (latest > maxScroll - 600) { 
-         setHideNavbar(true);
-      } else {
-         setHideNavbar(false);
-      }
+      setHideNavbar(latest > maxScroll - 600);
     });
   }, [scrollY]);
 
@@ -145,10 +126,10 @@ export default function Navbar() {
     <motion.div 
       initial={{ opacity: 1 }}
       animate={{ y: hideNavbar ? -100 : 0, opacity: hideNavbar ? 0 : 1 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="w-full flex items-center justify-between px-8 py-8 pointer-events-none z-[100]"
     >
-      {/* Left: Let's Work (No arrow by default) */}
+      {/* Left: Let's Work */}
       <NavButton 
         text="Let's work" 
         icon={null} 
@@ -156,15 +137,15 @@ export default function Navbar() {
         isLetsWork={true}
       />
 
-      {/* Center: Website Logo */}
+      {/* Center: Logo */}
       <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none">
         <AnimatePresence>
           {showCenterLogo && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              className="text-xl font-black tracking-tighter mix-blend-difference text-white pointer-events-auto"
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 10 }}
+              className="text-xl font-black tracking-tighter text-[#1a1a1a] pointer-events-auto"
               style={{ fontFamily: "var(--font-geist-sans)" }}
             >
               SERIOUS.BUSINESS
@@ -173,7 +154,7 @@ export default function Navbar() {
         </AnimatePresence>
       </div>
 
-      {/* Right: Menu transformed into Links Pill */}
+      {/* Right: Menu */}
       <NavButton 
         text="Menu" 
         hoverText={
