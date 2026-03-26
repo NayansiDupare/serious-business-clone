@@ -23,8 +23,8 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const serviceTopOffset = isMobile ? "150px" : "80px";
-  const labelTop = isMobile ? "80px" : "0px";
+  const serviceTopOffset = isMobile ? "60px" : "80px";
+  const labelTop = isMobile ? "0px" : "0px";
   
   const { scrollYProgress } = useScroll({
     target: insightsRef,
