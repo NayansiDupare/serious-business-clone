@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Reveal from "../ui/Reveal";
 
 export default function Footer() {
@@ -11,10 +12,10 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row gap-4">
             <h4 className="text-[10px] uppercase font-bold tracking-widest mt-1">Explore</h4>
             <ul className="space-y-1 text-xl sm:text-lg">
-              <li><a href="#" className="hover:opacity-60 transition-opacity">Work</a></li>
-              <li><a href="#" className="hover:opacity-60 transition-opacity">About</a></li>
-              <li><a href="#" className="hover:opacity-60 transition-opacity">Services</a></li>
-              <li><a href="#" className="hover:opacity-60 transition-opacity">Blog</a></li>
+              <li><Link to="/work" className="hover:opacity-60 transition-opacity">Work</Link></li>
+              <li><Link to="/about" className="hover:opacity-60 transition-opacity">About</Link></li>
+              <li><Link to="/services" className="hover:opacity-60 transition-opacity">Services</Link></li>
+              <li><Link to="/contact" className="hover:opacity-60 transition-opacity">Contact</Link></li>
             </ul>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">

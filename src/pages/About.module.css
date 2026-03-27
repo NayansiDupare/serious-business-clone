@@ -1,0 +1,401 @@
+/* ===== HERO ===== */
+
+.hero {
+  padding: 200px 40px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroLabel {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  margin-bottom: 24px;
+  font-family: var(--font-primary);
+}
+
+.heroHeading {
+  font-size: 56px;
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+/* ===== PHILOSOPHY ===== */
+
+.philosophy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  padding: 0 40px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.philHeading {
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.philSubtext {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.philBody {
+  font-size: 18px;
+  line-height: 1.85;
+  color: var(--color-text);
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+.philBody:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== IMAGE ===== */
+
+.imageSection {
+  padding: 0 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.fullImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+/* ===== STATS ===== */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding: 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statNumber {
+  display: block;
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--color-text);
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.statLabel {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  font-family: var(--font-primary);
+}
+
+/* ===== APPROACH ===== */
+
+.approach {
+  padding: 120px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.approachHeader {
+  margin-bottom: 80px;
+}
+
+.sectionLabel {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  margin-bottom: 20px;
+  font-family: var(--font-primary);
+}
+
+.approachHeading {
+  font-size: 44px;
+  font-weight: 300;
+  color: var(--color-text);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px 80px;
+}
+
+.valueItem {
+  border-top: 1px solid var(--color-border);
+  padding-top: 28px;
+}
+
+.valueIndex {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  margin-bottom: 16px;
+  font-family: var(--font-primary);
+}
+
+.valueTitle {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.valueDesc {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  font-weight: 300;
+}
+
+/* ===== DARK NAME SECTION ===== */
+
+.nameSection {
+  padding: 140px 40px;
+  text-align: center;
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.nameLabel {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+  margin-bottom: 24px;
+  font-family: var(--font-primary);
+}
+
+.nameHeading {
+  font-size: 100px;
+  font-weight: 400;
+  letter-spacing: -2px;
+  margin-bottom: 28px;
+  line-height: 1;
+}
+
+.nameText {
+  font-size: 18px;
+  font-weight: 300;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== EXPERTISE ===== */
+
+.expertiseSection {
+  padding: 120px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.expertiseHeader {
+  margin-bottom: 60px;
+}
+
+.expertiseHeading {
+  font-size: 44px;
+  font-weight: 300;
+  color: var(--color-text);
+  letter-spacing: -0.3px;
+}
+
+.expertiseList {
+  max-width: 800px;
+}
+
+.expertiseItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: default;
+  transition: padding-left var(--transition-default);
+}
+
+.expertiseItem:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.expertiseItem:hover {
+  padding-left: 12px;
+}
+
+.expertiseName {
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--color-text);
+  letter-spacing: 0.2px;
+}
+
+.expertiseArrow {
+  font-size: 18px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-default), transform var(--transition-default);
+}
+
+.expertiseItem:hover .expertiseArrow {
+  color: var(--color-text);
+  transform: translateX(4px);
+}
+
+/* ===== CTA ===== */
+
+.cta {
+  padding: 120px 40px;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+}
+
+.ctaHeading {
+  font-size: 44px;
+  font-weight: 300;
+  color: var(--color-text);
+  margin-bottom: 36px;
+  letter-spacing: -0.3px;
+}
+
+.ctaButton {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--color-bg);
+  background: var(--color-text);
+  padding: 16px 48px;
+  border-radius: 2px;
+  transition: opacity var(--transition-default);
+  font-family: var(--font-primary);
+}
+
+.ctaButton:hover {
+  opacity: 0.85;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1024px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 40px;
+  }
+
+  .valuesGrid {
+    gap: 48px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 150px 20px 80px;
+  }
+
+  .heroHeading {
+    font-size: 36px;
+  }
+
+  .philosophy {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px 80px;
+  }
+
+  .philHeading {
+    font-size: 36px;
+  }
+
+  .imageSection {
+    padding: 0 20px;
+  }
+
+  .fullImage {
+    height: 300px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 60px 20px;
+    gap: 40px 20px;
+  }
+
+  .statNumber {
+    font-size: 40px;
+  }
+
+  .approach {
+    padding: 80px 20px;
+  }
+
+  .approachHeading {
+    font-size: 32px;
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .nameSection {
+    padding: 80px 20px;
+  }
+
+  .nameHeading {
+    font-size: 56px;
+  }
+
+  .expertiseSection {
+    padding: 80px 20px;
+  }
+
+  .expertiseHeading {
+    font-size: 32px;
+  }
+
+  .expertiseName {
+    font-size: 18px;
+  }
+
+  .cta {
+    padding: 80px 20px;
+  }
+
+  .ctaHeading {
+    font-size: 32px;
+  }
+}

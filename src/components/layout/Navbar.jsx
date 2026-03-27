@@ -1,8 +1,8 @@
 
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
-import MenuOverlay from "./MenuOverlay";
 
 const SmileIcon = () => (
   <svg viewBox="0 0 100 100" className="w-5 h-5 fill-current">
@@ -14,11 +14,11 @@ const SmileIcon = () => (
 
 const MenuIcon = ({ isOpen }) => (
   <div className="w-6 h-6 relative flex flex-col items-center justify-center">
-    <motion.span 
+    <motion.span
       animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 1 : -4 }}
       className="w-6 h-[2px] bg-current absolute rounded-full"
     />
-    <motion.span 
+    <motion.span
       animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? 1 : 4 }}
       className="w-6 h-[2px] bg-current absolute rounded-full"
     />
@@ -33,7 +33,7 @@ const NavButton = ({ text, activeText, isActive = false, hoverText, icon, hoverI
   useEffect(() => {
     if (isLetsWork && iconWrapperRef.current) {
       if (isHovered) {
-        gsap.fromTo(iconWrapperRef.current, 
+        gsap.fromTo(iconWrapperRef.current,
           { scale: 0, rotate: -180, opacity: 0 },
           { scale: 1, rotate: 0, opacity: 1, duration: 0.6, ease: "power4.out" }
         );
@@ -45,7 +45,7 @@ const NavButton = ({ text, activeText, isActive = false, hoverText, icon, hoverI
   const staticStyle = { backgroundColor: "var(--accent-bg)", color: "var(--accent-text, #111111)" };
 
   return (
-    <motion.div 
+    <motion.div
       initial="initial"
       whileHover="hover"
       onHoverStart={() => setIsHovered(true)}
@@ -53,10 +53,10 @@ const NavButton = ({ text, activeText, isActive = false, hoverText, icon, hoverI
       className="flex items-center gap-1.5 pointer-events-auto cursor-none shrink-0"
       onClick={onClick}
     >
-      <motion.div 
+      <motion.div
         layout
         style={staticStyle}
-        transition={{ 
+        transition={{
           layout: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } // Premium smooth ease
         }}
         className="px-6 py-3 rounded-full shadow-sm font-bold text-sm flex items-center overflow-hidden h-[44px]"
@@ -97,29 +97,29 @@ const NavButton = ({ text, activeText, isActive = false, hoverText, icon, hoverI
           </AnimatePresence>
         </div>
       </motion.div>
-      
+
       {/* Circle with Icon - Color REMAIN STATIC */}
-      <motion.div 
+      <motion.div
         style={staticStyle}
-        animate={{ 
+        animate={{
           opacity: (isLetsWork && !isHovered && !icon) ? 0 : 1,
           scale: (isLetsWork && !isHovered && !icon) ? 0.8 : 1,
         }}
-        transition={{ 
+        transition={{
           opacity: { duration: 0.3 },
           scale: { duration: 0.3 }
         }}
         className="w-11 h-11 rounded-full shadow-sm flex items-center justify-center flex-shrink-0 relative overflow-hidden"
       >
         <div className="absolute inset-0 flex items-center justify-center transition-all duration-500" style={{ opacity: isHovered || isActive ? 0 : 1, transform: isHovered || isActive ? "scale(0) rotate(-180deg)" : "scale(1) rotate(0deg)" }}>
-           {icon}
+          {icon}
         </div>
-        <div 
+        <div
           ref={iconWrapperRef}
-          className="absolute inset-0 flex items-center justify-center transition-all duration-500" 
+          className="absolute inset-0 flex items-center justify-center transition-all duration-500"
           style={{ opacity: isHovered || isActive ? 1 : 0, transform: isHovered || isActive ? "scale(1) rotate(0deg)" : "scale(0) rotate(180deg)" }}
         >
-           {hoverIcon || icon}
+          {hoverIcon || icon}
         </div>
       </motion.div>
     </motion.div>
@@ -130,7 +130,6 @@ export default function Navbar() {
   const { scrollY } = useScroll();
   const [showCenterLogo, setShowCenterLogo] = useState(false);
   const [hideNavbar, setHideNavbar] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -139,7 +138,7 @@ export default function Navbar() {
       const scrollHeight = document.documentElement.scrollHeight;
       const clientHeight = window.innerHeight;
       const maxScroll = scrollHeight - clientHeight;
-      
+
       // Only hide navbar if the page is long enough (> 1000px scrollable) 
       // and we are near the very bottom
       setHideNavbar(maxScroll > 1000 && latest > maxScroll - 400);
@@ -147,7 +146,7 @@ export default function Navbar() {
   }, [scrollY]);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 1 }}
       animate={{ y: hideNavbar ? -100 : 0, opacity: hideNavbar ? 0 : 1 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -159,10 +158,10 @@ export default function Navbar() {
 
       {/* Desktop-only Left: Let's Work */}
       <div className="hidden md:block">
-        <NavButton 
-          text="Let's work" 
-          icon={null} 
-          hoverIcon={<SmileIcon />} 
+        <NavButton
+          text="Let's work"
+          icon={null}
+          hoverIcon={<SmileIcon />}
           isLetsWork={true}
         />
       </div>
@@ -186,41 +185,36 @@ export default function Navbar() {
 
       {/* Right: Grouped Buttons on Mobile, Menu on Desktop */}
       <div className="flex items-center gap-2 pointer-events-auto">
-        {/* Mobile-only Layout (Pill + Ellipsis) */}
-        <div className="md:hidden flex items-center gap-2">
-          <div className="bg-[var(--accent-bg)] px-5 py-2.5 rounded-full shadow-sm font-bold text-[13px] text-[#111111] whitespace-nowrap leading-none h-[44px] flex items-center">
-            Let's work
-          </div>
-          <div 
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="w-11 h-11 bg-[var(--accent-bg)] rounded-full shadow-sm flex items-center justify-center text-[#111111] cursor-pointer"
-          >
-            <MenuIcon isOpen={menuOpen} />
-          </div>
+        {/* Mobile-only Layout: Direct Links */}
+        <div className="md:hidden flex items-center gap-4 overflow-x-auto no-scrollbar">
+          <Link to="/" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">Home</Link>
+          <Link to="/work" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">Work</Link>
+          <Link to="/about" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">About</Link>
+          <Link to="/services" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">Services</Link>
+          <Link to="/contact" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">Contact</Link>
         </div>
 
         {/* Desktop-only Menu */}
         <div className="hidden md:block">
-          <NavButton 
-            text="Menu" 
-            activeText="Close"
-            isActive={menuOpen}
+          <NavButton
+            text="Menu"
+            isActive={false}
             hoverText={
               <div className="flex gap-6">
-                <span className="hover:opacity-60 transition-opacity">Work</span>
-                <span className="hover:opacity-60 transition-opacity">About</span>
-                <span className="hover:opacity-60 transition-opacity">Services</span>
-                <span className="hover:opacity-60 transition-opacity">Blog</span>
+                <Link to="/" className="hover:opacity-60 transition-opacity">Home</Link>
+                <Link to="/work" className="hover:opacity-60 transition-opacity">Work</Link>
+                <Link to="/about" className="hover:opacity-60 transition-opacity">About</Link>
+                <Link to="/services" className="hover:opacity-60 transition-opacity">Services</Link>
+                <Link to="/contact" className="hover:opacity-60 transition-opacity">Contact</Link>
               </div>
             }
-            icon={<MenuIcon isOpen={menuOpen} />} 
-            hoverIcon={<MenuIcon isOpen={menuOpen} />}
-            onClick={() => setMenuOpen(!menuOpen)}
+            icon={<MenuIcon isOpen={false} />}
+            hoverIcon={<MenuIcon isOpen={false} />}
+            onClick={() => {}}
           />
         </div>
       </div>
 
-      <MenuOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </motion.div>
   );
 }
