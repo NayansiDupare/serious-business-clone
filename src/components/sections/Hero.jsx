@@ -1,4 +1,4 @@
-"use client";
+
 
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -20,7 +20,7 @@ export function HeroTopText() {
         animate="show"
         variants={{
           hidden: {},
-          show: { transition: { staggerChildren: 0.05, delayChildren: 2.5 } }
+          show: { transition: { staggerChildren: 0.05, delayChildren: 0.8 } }
         }}
         className="text-[clamp(2.5rem,10vw,8.5vw)] font-black tracking-tighter text-[#1a1a1a] leading-[0.7] whitespace-nowrap flex overflow-hidden lg:text-[8.5vw] md:text-[9vw]" 
         style={{ fontFamily: "var(--font-geist-sans)", letterSpacing: "-0.04em" }}
@@ -99,9 +99,9 @@ export default function Hero() {
       
       {/* Center Text exactly aligned with the new Sticky Navbar */}
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 3.3, duration: 0.8, ease: "easeOut" }}
+        transition={{ delay: 1, duration: 1, ease: [0.76, 0, 0.24, 1] }}
         style={{ opacity: textOpacity }}
         className="absolute top-[85vh] md:top-2 left-0 w-full flex flex-col items-center z-20 pointer-events-none px-6"
       >
@@ -116,7 +116,7 @@ export default function Hero() {
         ref={orbRef}
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 3.6, duration: 1.2, type: "spring", bounce: 0.4 }}
+        transition={{ delay: 1.2, duration: 1.2, type: "spring", bounce: 0.4 }}
         style={{ opacity: textOpacity }}
         className="absolute top-[20vh] md:top-[2vh] left-0 w-full flex justify-center z-10 pointer-events-none opacity-50 mix-blend-multiply"
       >
@@ -129,7 +129,7 @@ export default function Hero() {
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 3.6, duration: 0.8, ease: "easeOut" }}
+        transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
         style={{ width: smoothWidth, height: smoothHeight, top: smoothTop }}
         className="absolute left-6 z-40 rounded-xl overflow-hidden shadow-2xl bg-[#fff242] p-1.5 flex items-center justify-center shadow-indigo-500/20"
       >

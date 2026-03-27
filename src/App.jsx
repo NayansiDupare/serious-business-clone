@@ -1,5 +1,5 @@
-"use client";
-
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "./components/layout/Navbar"
 import StackContainer from "./components/layout/StackContainer"
 import Hero, { HeroTopText } from "./components/sections/Hero";
@@ -8,28 +8,52 @@ import ServiceBlock, { StrategyImage, VisualImage, WebsiteImage, ProductImage } 
 import Works from "./components/sections/Works";
 import Footer from "./components/sections/Footer";
 import Insights from "./components/sections/Insights";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import CTA from "./components/sections/CTA";
+import ClientWrapper from "./components/layout/ClientWrapper";
+import CustomCursor from "./components/ui/CustomCursor";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export default function Home() {
-  const insightsRef = useRef(null);
+gsap.registerPlugin(ScrollTrigger);
 
-  const { scrollYProgress } = useScroll({
-    target: insightsRef,
-    offset: ["start 90%", "end 20%"]
-  });
+export default function App() {
+  useEffect(() => {
+    // 1. Entrance into Dark
+    gsap.to("body", {
+      backgroundColor: "#111111",
+      color: "#f9c4d2",
+      "--accent-color": "#f9c4d2",
+      "--accent-bg": "#f9c4d2",
+      immediateRender: false,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: ".dark-section",
+        start: "top 85%",
+        end: "top 25%",
+        scrub: 1.5,
+      }
+    });
 
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    ["#ff8cc2", "#1a1a1a", "#1a1a1a", "#ff8cc2"]
-  );
+    // 2. Return to Pink (Smooth Footer)
+    gsap.to("body", {
+      backgroundColor: "#f9c4d2",
+      color: "#111111",
+      "--accent-color": "#111111",
+      "--accent-bg": "#ffffff",
+      immediateRender: false,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: "footer",
+        start: "top 95%",
+        end: "top 35%",
+        scrub: 1.5,
+      }
+    });
 
-  const color = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    ["#1a1a1a", "#ff8cc2", "#ff8cc2", "#1a1a1a"]
-  );
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, []);
 
   const servicePanels = [
     {
@@ -80,33 +104,42 @@ export default function Home() {
   ];
 
   return (
-    <motion.main style={{ backgroundColor, color }} className="transition-colors duration-500">
-      <HeroTopText />
+    <>
+      <CustomCursor />
+      <ClientWrapper>
+        <main className="font-sans antialiased">
+          <HeroTopText />
 
-      <div className="relative w-full">
-        <div className="sticky top-0 w-full z-[100] h-0">
-          <Navbar />
-        </div>
+          <div className="relative w-full">
+            <div className="sticky top-0 w-full z-[100] h-0">
+              <Navbar />
+            </div>
 
-        <Hero />
-        <About />
+            <Hero />
+            <About />
 
-        {/* Services label */}
-        <div className="w-full h-[8vh] bg-primary flex items-end pb-2 px-6">
-          <span className="text-xl font-bold tracking-tighter text-[#1a1a1a]">Services</span>
-        </div>
+            <div className="w-full h-[8vh] flex items-end pb-2 px-6">
+              <span className="text-xl font-bold tracking-tighter opacity-60">Services</span>
+            </div>
+            <StackContainer panels={servicePanels} />
 
-        <StackContainer panels={servicePanels} />
+            <Works />
 
-        {/* WORKS, INSIGHTS & FOOTER */}
-        <div className="relative z-[60]">
-          <Works />
-          <div ref={insightsRef} className="w-full">
-            <Insights />
+            <div className="dark-section">
+              <div className="relative z-[60] py-20">
+                <div className="w-full">
+                  <Insights />
+                </div>
+              </div>
+            </div>
+
+            <CTA />
+
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </div>
-    </motion.main>
+        </main>
+      </ClientWrapper>
+    </>
   );
 }
+

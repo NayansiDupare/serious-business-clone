@@ -1,4 +1,3 @@
-"use client";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -49,3 +48,4 @@ export default function AnimatedCounter({
 
   return <span ref={elementRef}>{count}</span>;
 }
+

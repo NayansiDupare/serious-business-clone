@@ -1,4 +1,3 @@
-"use client";
 
 export default function ServicesStack({ panels }) {
   return (
@@ -22,3 +21,4 @@ export default function ServicesStack({ panels }) {
     </div>
   );
 }
+

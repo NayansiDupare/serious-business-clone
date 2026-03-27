@@ -1,4 +1,3 @@
-"use client";
 
 import { motion } from "framer-motion";
 
@@ -18,3 +17,4 @@ export default function Reveal({ children, delay = 0.2, y = 50 }) {
     </motion.div>
   );
 }
+

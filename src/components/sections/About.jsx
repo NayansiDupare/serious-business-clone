@@ -1,4 +1,3 @@
-"use client";
 
 import { motion } from "framer-motion";
 import AnimatedCounter from "../ui/AnimatedCounter";
@@ -64,3 +63,4 @@ export default function About() {
     </div>
   );
 }
+

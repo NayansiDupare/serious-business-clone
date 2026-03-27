@@ -1,4 +1,3 @@
-"use client";
 
 import { motion } from "framer-motion";
 import AnimatedCounter from "../ui/AnimatedCounter";
@@ -20,7 +19,7 @@ export default function ServiceBlock({
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ margin: "-10%" }}
-          className="text-[14vw] md:text-[6vw] lg:text-[7vw] font-black leading-[0.9] tracking-tighter mb-8 md:mb-16 lg:mb-24" 
+          className="text-[14vw] md:text-[6vw] lg:text-[7vw] font-black leading-[0.9] tracking-tighter mb-8 md:mb-16 lg:mb-24 text-inherit" 
           style={{ fontFamily: "var(--font-geist-sans)" }}
         >
           {title}

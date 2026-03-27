@@ -1,4 +1,3 @@
-"use client";
 
 import { motion } from "framer-motion";
 import Reveal from "../ui/Reveal";
@@ -11,7 +10,7 @@ export default function Insights() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 overflow-hidden gap-6">
         <Reveal>
           <h2 
-            className="text-[1.8rem] sm:text-[2.5rem] md:text-[5vw] font-black leading-none tracking-tight" 
+            className="text-[1.8rem] sm:text-[2.5rem] md:text-[5vw] font-black leading-none tracking-tight text-[var(--accent-color)]" 
             style={{ fontFamily: "var(--font-geist-sans)" }}
           >
             Latest insights for scaleup teams
@@ -169,3 +168,4 @@ export default function Insights() {
     </div>
   );
 }
+
