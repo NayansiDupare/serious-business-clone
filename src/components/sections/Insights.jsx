@@ -60,8 +60,8 @@ export default function Insights() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
-                style={{ minWidth: "clamp(220px, 58vw, 340px)" }}
-                className="flex-shrink-0 md:flex-shrink md:min-w-0 snap-start flex flex-col gap-0 group cursor-pointer"
+                style={{ width: "clamp(240px, 58vw, 420px)", flexShrink: 0, flexGrow: 0 }}
+                className="md:w-auto md:flex-1 snap-start flex flex-col gap-0 group cursor-pointer"
               >
                 {/* Card image box */}
                 <div
@@ -69,41 +69,29 @@ export default function Insights() {
                   style={{
                     backgroundColor: card.bg,
                     aspectRatio: "4/3",
-                    padding: "clamp(16px, 4vw, 32px)",
+                    padding: "clamp(20px, 4vw, 40px)",
                   }}
                 >
-                  <p
-                    className="font-bold uppercase tracking-widest mb-3 opacity-60"
-                    style={{ fontSize: "clamp(8px, 1.5vw, 11px)" }}
-                  >
+                  <p className="text-[10px] font-bold uppercase tracking-widest mb-3 opacity-60">
                     {card.brand}
                   </p>
                   <p
-                    className="font-playfair italic mb-2 tracking-wide"
-                    style={{
-                      fontSize: "clamp(10px, 2vw, 14px)",
-                      color: card.labelColor || "inherit",
-                    }}
+                    className="font-playfair text-sm italic mb-2 tracking-wide"
+                    style={{ color: card.labelColor || "inherit" }}
                   >
                     {card.label}
                   </p>
                   {card.titleLarge ? (
                     <h3
                       className="font-black leading-tight tracking-tighter"
-                      style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: "clamp(2rem, 6vw, 3.5rem)",
-                      }}
+                      style={{ fontFamily: "var(--font-geist-sans)", fontSize: "clamp(1.8rem, 5vw, 3rem)" }}
                     >
                       {card.titleLarge}
                     </h3>
                   ) : (
                     <h3
                       className="font-black leading-tight tracking-tight"
-                      style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: "clamp(1.1rem, 3.5vw, 2rem)",
-                      }}
+                      style={{ fontFamily: "var(--font-geist-sans)", fontSize: "clamp(1rem, 3vw, 1.75rem)" }}
                     >
                       {card.title.split("\n").map((line, j, arr) => (
                         <span key={j}>{line}{j < arr.length - 1 && <br />}</span>
@@ -112,20 +100,21 @@ export default function Insights() {
                   )}
                 </div>
 
-                {/* Description — large bold text like reference */}
+                {/* Description — large bold, wraps within card column width */}
                 <p
-                  className="font-bold leading-snug text-[#fbc1d4] mt-4 mb-4"
-                  style={{ fontSize: "clamp(1rem, 3.5vw, 1.25rem)" }}
+                  className="font-bold leading-snug text-[#fbc1d4] mt-5 mb-5"
+                  style={{
+                    fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
+                    wordBreak: "break-word",
+                    overflowWrap: "break-word",
+                  }}
                 >
                   {card.desc}
                 </p>
 
                 {/* Category label + divider */}
-                <div className="border-b border-white/20 pb-3">
-                  <span
-                    className="font-bold uppercase tracking-widest opacity-50"
-                    style={{ fontSize: "clamp(9px, 1.5vw, 11px)" }}
-                  >
+                <div className="border-b border-white/20 pb-3 mt-auto">
+                  <span className="text-[11px] font-bold uppercase tracking-widest opacity-50">
                     Knowledge
                   </span>
                 </div>
