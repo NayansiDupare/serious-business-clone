@@ -1,6 +1,7 @@
 
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import TransitionLink from "../ui/TransitionLink";
 import gsap from "gsap";
 
@@ -28,6 +29,7 @@ const MenuIcon = ({ isOpen }) => (
 const NavButton = ({ text, activeText, isActive = false, hoverText, icon, hoverIcon, onClick, isLetsWork = false }) => {
   const [isHovered, setIsHovered] = useState(false);
   const iconWrapperRef = useRef(null);
+
 
   // Smooth GSAP animation for the smile
   useEffect(() => {
@@ -130,6 +132,7 @@ export default function Navbar() {
   const { scrollY } = useScroll();
   const [showCenterLogo, setShowCenterLogo] = useState(false);
   const [hideNavbar, setHideNavbar] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -177,15 +180,12 @@ export default function Navbar() {
 
       {/* Right: Grouped Buttons on Mobile, Menu on Desktop */}
       <div className="flex items-center gap-2 pointer-events-auto">
-        {/* Mobile-only Layout: Direct Links */}
-        <div className="md:hidden flex items-center gap-4 overflow-x-auto no-scrollbar">
-          <TransitionLink to="/" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">Home</TransitionLink>
-          <TransitionLink to="/work" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">Work</TransitionLink>
-          <TransitionLink to="/about" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">About</TransitionLink>
-          <TransitionLink to="/services" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">Services</TransitionLink>
-          <TransitionLink to="/contact" className="text-[13px] font-bold opacity-70 hover:opacity-100 transition-opacity whitespace-nowrap">Contact</TransitionLink>
+        {/* ✅ MOBILE TOGGLE BUTTON */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(true)}>
+            <MenuIcon isOpen={isOpen} />
+          </button>
         </div>
-
         {/* Desktop-only Menu */}
         <div className="hidden md:block">
           <NavButton
@@ -202,11 +202,60 @@ export default function Navbar() {
             }
             icon={<MenuIcon isOpen={false} />}
             hoverIcon={<MenuIcon isOpen={false} />}
-            onClick={() => {}}
+            onClick={() => { }}
           />
         </div>
       </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 bg-[#f5f5f5] z-[200] pointer-events-auto flex flex-col justify-between px-6 py-8 md:hidden"          >
+
+            {/* TOP */}
+            <div className="flex justify-between items-center">
+              <img src="/footerLogoBlack.png" className="h-6" />
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsOpen(false);
+                }}
+                className="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* LINKS */}
+            <div className="flex flex-col gap-6 text-3xl font-semibold">
+              <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
+              <Link to="/work" onClick={() => setIsOpen(false)}>Work</Link>
+              <Link to="/about" onClick={() => setIsOpen(false)}>About</Link>
+              <Link to="/services" onClick={() => setIsOpen(false)}>Services</Link>
+              <Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+            </div>
+
+            {/* FOOTER */}
+            <div className="text-sm">
+              <p className="uppercase text-xs opacity-50">Say hello</p>
+              <p className="underline mb-4">newbiz@marshallhaber.com</p>
+
+              <p className="uppercase text-xs opacity-50">Exceptional talent?</p>
+              <p className="underline">apply@marshallhaber.com</p>
+            </div>
+
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </motion.div>
+
+
+
+
   );
 }
