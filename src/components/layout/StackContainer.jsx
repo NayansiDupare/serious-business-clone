@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function StackContainer({ panels }) {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full overflow-x-hidden">
       {panels.map(({ bg, children }, i) => (
         <section
           key={i}

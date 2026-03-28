@@ -18,8 +18,8 @@ export default function App() {
       <TransitionProvider>
       <CustomCursor />
       <ClientWrapper>
-        <main className="font-sans antialiased">
-          <div className="relative w-full">
+        <main className="font-sans antialiased overflow-x-hidden">
+          <div className="relative w-full overflow-x-hidden">
             <div className="sticky top-0 w-full z-[100] h-0">
               <Navbar />
             </div>
