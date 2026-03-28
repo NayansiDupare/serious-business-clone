@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function StackContainer({ panels }) {
   return (
-    <div className="relative w-full overflow-x-hidden">
+    <div className="relative w-full">
       {panels.map(({ bg, children }, i) => (
         <section
           key={i}
@@ -17,7 +17,7 @@ export default function StackContainer({ panels }) {
           }}
           className="w-full flex flex-col overflow-hidden"
         >
-          <div className="flex-1 w-full overflow-y-auto md:overflow-hidden">
+          <div className="flex-1 w-full overflow-hidden">
             {children}
           </div>
         </section>
