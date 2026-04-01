@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -29,7 +28,7 @@ export default function Loader() {
         transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.2 }}
         className="overflow-hidden"
       >
-        <img src="/logonewlong.png" alt="Marshall Haber Creative Group" className="h-[8vw] md:h-[6vw] w-auto" />
+        <img src="/footerLogoBlack.png" alt="Marshall Haber Creative Group" className="h-[8vw] md:h-[6vw] w-auto" />
       </motion.div>
     </motion.div>
   );
