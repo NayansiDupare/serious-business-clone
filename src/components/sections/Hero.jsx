@@ -1,149 +1,141 @@
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SmileLogo from "../ui/SmileLogo";
+import videoSrc from "../../assets/video.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function HeroTopText() {
-  const { scrollYProgress } = useScroll();
-  const textOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   return null;
 }
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
-  const { scrollYProgress } = useScroll();
-
-  // 🔥 smoother Netflix-like spring
-  const springConfig = { stiffness: 18, damping: 30, mass: 1.4 };
-
-  // responsive sizes
-  const expandedWidth = "calc(100vw - 2rem)";
-  const initialWidth = "clamp(140px, 30vw, 220px)";
-
-  const width = useTransform(scrollYProgress, [0.05, 0.5], [initialWidth, expandedWidth]);
-  const smoothWidth = useSpring(width, springConfig);
-
-  const height = useTransform(
-    scrollYProgress,
-    [0.05, 0.5],
-    ["clamp(90px, 18vw, 160px)", "75vh"]
-  );
-  const smoothHeight = useSpring(height, springConfig);
-
-  const orbRef = useRef(null);
+  const containerRef = useRef(null);
+  const stickyRef = useRef(null);
+  const videoWrapperRef = useRef(null);
+  const textRef = useRef(null);
+  const logoRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const initialTopVal =
-    mounted && typeof window !== "undefined" && window.innerWidth < 768
-      ? "92vh"
-      : "78vh";
-
-  const top = useTransform(scrollYProgress, [0.05, 0.5], [initialTopVal, "8vh"]);
-  const smoothTop = useSpring(top, springConfig);
-
-  const filterOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const smoothFilterOpacity = useSpring(filterOpacity, {
-    stiffness: 20,
-    damping: 35
-  });
-
-  const textOpacity = useTransform(scrollYProgress, [0, 0.18], [1, 0]);
-
   useEffect(() => {
+    if (!mounted) return;
+
     const ctx = gsap.context(() => {
-      gsap.to(orbRef.current, {
-        y: "20vh",
-        ease: "none",
+      // Pin the section and animate the video
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: orbRef.current,
+          trigger: containerRef.current,
           start: "top top",
-          end: "bottom top",
-          scrub: 1.2 // 🔥 smoother scrub
+          end: "+=120%", // duration of the scroll pin
+          scrub: 1, // smooth scrubbing
+          pin: true,
         }
       });
-    });
-    return () => ctx.revert();
-  }, []);
 
-  if (!mounted)
-    return (
-      <section className="relative w-full h-[120vh] bg-primary overflow-hidden" />
-    );
+      // Scale up video to cover screen
+      tl.to(videoWrapperRef.current, {
+        width: "100vw",
+        height: "100vh",
+        bottom: 0,
+        left: 0,
+        borderRadius: 0,
+        ease: "power2.inOut",
+      }, 0);
+
+      // Fade out the logo and text as video scales
+      tl.to([textRef.current, logoRef.current], {
+        opacity: 0,
+        y: -50,
+        ease: "power1.inOut",
+      }, 0);
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [mounted]);
+
+  if (!mounted) {
+    return <section className="relative w-full h-screen bg-primary overflow-hidden" />;
+  }
 
   return (
-    <section className="relative w-full h-[120vh] md:h-[130vh] bg-primary overflow-hidden px-4 md:px-6">
+    <section ref={containerRef} className="relative w-full h-screen bg-primary overflow-hidden">
+      <div ref={stickyRef} className="relative w-full h-full flex flex-col items-center">
 
-      {/* TEXT — bottom area on all screens */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 1, ease: [0.76, 0, 0.24, 1] }}
-        style={{ opacity: textOpacity }}
-        className="
-          absolute
-          top-[72vh] sm:top-[75vh] md:top-[72vh]
-          left-0 w-full
-          flex flex-col items-center
-          z-20 pointer-events-none
-          px-4 md:px-6
-        "
-      >
-        <h2 className="
-          text-[18px]
-          sm:text-[20px]
-          md:text-[26px]
-          lg:text-[30px]
-          xl:text-[34px]
-          leading-[1.3]
-          font-bold
-          text-[#1a1a1a]
-          text-center
-          tracking-tight
-          max-w-[90%] md:max-w-[600px]
-        ">
-          Premium Branding Agency{" "}
-          <br className="hidden md:block" />
-          for B2B Tech Scaleups
-        </h2>
-      </motion.div>
-
-      {/* LOGO — upper-center on all screens */}
-      <motion.div
-        ref={orbRef}
-        initial={{ scale: 0.85, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1.2, type: "spring", bounce: 0.3 }}
-        style={{ opacity: textOpacity }}
-        className="
-          absolute
-          top-[12vh] sm:top-[14vh] md:top-[14vh]
-          left-0 w-full
-          flex justify-center
-          z-10
-          pointer-events-none
-          opacity-50
-          mix-blend-multiply
-        "
-      >
-        <div className="
-          w-[72vw]
-          sm:w-[62vw]
-          md:w-[52vw]
-          lg:w-[46vw]
-          xl:w-[40vw]
-          max-w-[580px]
-          aspect-square
-        ">
-          <SmileLogo />
+        {/* LOGO — Upper Center */}
+        <div
+          ref={logoRef}
+          className="
+            absolute
+            top-[10vh]
+            w-full
+            flex justify-center
+            z-10
+            pointer-events-none
+            opacity-30
+            mix-blend-multiply
+          "
+        >
+          <div className="w-[60vw] max-w-[500px] aspect-square">
+            <SmileLogo />
+          </div>
         </div>
-      </motion.div>
 
+        {/* TEXT — Center */}
+        <div
+          ref={textRef}
+          className="
+            absolute
+            top-[40vh] md:top-[35vh]
+            w-full
+            flex justify-center
+            z-20 pointer-events-none
+            px-4
+          "
+        >
+          <h2 className="
+            text-[24px] md:text-[40px] lg:text-[50px]
+            leading-[1.1]
+            font-bold
+            text-[#1a1a1a]
+            text-center
+            tracking-tight
+            max-w-[800px]
+          ">
+            Premium Branding Agency <br />
+            for B2B Tech Scaleups
+          </h2>
+        </div>
+
+        {/* VIDEO — Starts Bottom Left */}
+        <div
+          ref={videoWrapperRef}
+          className="absolute z-30 overflow-hidden"
+          style={{
+            bottom: "2rem",
+            left: "2rem",
+            width: "clamp(200px, 25vw, 400px)",
+            height: "clamp(120px, 15vw, 240px)",
+            borderRadius: "16px",
+            boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+          }}
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            src={videoSrc}
+          />
+        </div>
+
+      </div>
     </section>
   );
 }
