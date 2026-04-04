@@ -7,6 +7,7 @@ import Footer from "./components/sections/Footer";
 import ClientWrapper from "./components/layout/ClientWrapper";
 import CustomCursor from "./components/ui/CustomCursor";
 import ErrorBoundary from "./components/ui/ErrorBoundary";
+import Loader from "./components/ui/Loader";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -18,27 +19,33 @@ import ComingSoon from "./pages/ComingSoon";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Kills all GSAP ScrollTriggers (including pin spacers) and resets body styles
-// synchronously before the browser paints the new route.
 function RouteChangeHandler() {
   const location = useLocation();
   useLayoutEffect(() => {
-    // Revert (not just kill) each trigger so pin spacers are removed
-    // and position:fixed is cleared before the new page paints.
     ScrollTrigger.getAll().forEach(t => t.kill(true));
     gsap.killTweensOf(document.body);
     document.body.style.backgroundColor = "";
     document.body.style.color = "";
     document.body.style.removeProperty("--accent-color");
     document.body.style.removeProperty("--accent-bg");
+    document.body.style.overflow = "hidden";
+    const t = setTimeout(() => { document.body.style.overflow = "auto"; }, 3000);
+    return () => clearTimeout(t);
   }, [location.pathname]);
   return null;
+}
+
+// Remounts Loader on every route change so the animation plays each time
+function PageTransitionLoader() {
+  const location = useLocation();
+  return <Loader key={location.pathname} />;
 }
 
 export default function App() {
   return (
     <Router>
       <RouteChangeHandler />
+      <PageTransitionLoader />
       <CustomCursor />
       <ClientWrapper>
         <main className="font-sans antialiased">
