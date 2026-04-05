@@ -1,7 +1,6 @@
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
 import TransitionLink from "../ui/TransitionLink";
 import gsap from "gsap";
 
@@ -304,25 +303,19 @@ const DesktopMenu = () => {
 export default function Navbar() {
   const { scrollY } = useScroll();
   const [showCenterLogo, setShowCenterLogo] = useState(false);
-  const [hideNavbar, setHideNavbar] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
       setShowCenterLogo(latest > 300);
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = window.innerHeight;
-      const maxScroll = scrollHeight - clientHeight;
-      setHideNavbar(maxScroll > 1000 && latest > maxScroll - 400);
     });
   }, [scrollY]);
 
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      animate={{ y: hideNavbar ? -100 : 0, opacity: hideNavbar ? 0 : 1 }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="w-full flex items-center justify-between px-4 md:px-8 py-4 md:py-8 pointer-events-none z-[100]"
+      className="w-full flex items-center justify-between px-4 md:px-8 py-4 md:py-8 pointer-events-none"
+      style={{ position: "relative", zIndex: 9999 }}
     >
       {/* Mobile Logo */}
       <div className="md:hidden block pointer-events-auto leading-none">
@@ -403,11 +396,11 @@ export default function Navbar() {
             </div>
 
             <div className="flex flex-col gap-6 text-3xl font-semibold">
-              <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
-              <Link to="/work" onClick={() => setIsOpen(false)}>Work</Link>
-              <Link to="/about" onClick={() => setIsOpen(false)}>About</Link>
-              <Link to="/services" onClick={() => setIsOpen(false)}>Services</Link>
-              <Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+              <TransitionLink to="/" onClick={() => setIsOpen(false)}>Home</TransitionLink>
+              <TransitionLink to="/work" onClick={() => setIsOpen(false)}>Work</TransitionLink>
+              <TransitionLink to="/about" onClick={() => setIsOpen(false)}>About</TransitionLink>
+              <TransitionLink to="/services" onClick={() => setIsOpen(false)}>Services</TransitionLink>
+              <TransitionLink to="/contact" onClick={() => setIsOpen(false)}>Contact</TransitionLink>
             </div>
 
             <div className="text-sm">

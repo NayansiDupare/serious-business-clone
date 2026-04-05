@@ -1,55 +1,74 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useNavigation } from "../../context/NavigationContext";
 
 const COLORS = ["#1a1a1a", "#fac541", "#cba6f7", "#f9c4d2"];
-const SLIDE = 0.55;   // seconds each panel takes to slide
-const STAGGER = 0.08; // seconds between each panel
-const ALL_IN = SLIDE + (COLORS.length - 1) * STAGGER; // ~0.79s for all panels in
+const SLIDE = 0.55;
+const STAGGER = 0.08;
+const ALL_IN_MS = (SLIDE + (COLORS.length - 1) * STAGGER) * 1000; // ~790ms
 
-export default function Loader() {
-  const [phase, setPhase] = useState("in"); // "in" → "out" → "done"
+function LoaderPanel({ color, index, isLoading }) {
+  const controls = useAnimation();
 
   useEffect(() => {
-    const outAt   = (ALL_IN + 0.7) * 1000;              // hold 700ms after all panels in
-    const doneAt  = (ALL_IN + 0.7 + ALL_IN + 0.3) * 1000; // after panels exit + buffer
-    const t1 = setTimeout(() => setPhase("out"),  outAt);
-    const t2 = setTimeout(() => setPhase("done"), doneAt);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, []);
-
-  if (phase === "done") return null;
+    if (isLoading) {
+      controls.set({ y: "100%" });
+      controls.start({
+        y: "0%",
+        transition: { duration: SLIDE, delay: index * STAGGER, ease: [0.76, 0, 0.24, 1] },
+      });
+    } else {
+      controls.start({
+        y: "-100%",
+        transition: {
+          duration: SLIDE,
+          delay: (COLORS.length - 1 - index) * STAGGER,
+          ease: [0.76, 0, 0.24, 1],
+        },
+      });
+    }
+  }, [isLoading]);
 
   return (
-    <div className="fixed inset-0 z-[99999] pointer-events-none overflow-hidden">
-      {/* Colored panels */}
-      {COLORS.map((color, i) => (
-        <motion.div
-          key={color}
-          className="absolute inset-0"
-          style={{ backgroundColor: color, zIndex: i }}
-          initial={{ y: "100%" }}
-          animate={phase === "out" ? { y: "-100%" } : { y: "0%" }}
-          transition={{
-            duration: SLIDE,
-            // enter: top panel first; exit: reverse (top panel last)
-            delay: phase === "out"
-              ? (COLORS.length - 1 - i) * STAGGER
-              : i * STAGGER,
-            ease: [0.76, 0, 0.24, 1],
-          }}
-        />
+    <motion.div
+      animate={controls}
+      initial={{ y: "100%" }}
+      style={{ position: "absolute", inset: 0, backgroundColor: color, zIndex: index }}
+    />
+  );
+}
+
+export default function Loader() {
+  const { isLoading, isNavigating } = useNavigation();
+  const [showLogo, setShowLogo] = useState(false);
+
+  useEffect(() => {
+    if (isLoading && !isNavigating) {
+      // Initial load only — show logo immediately
+      setShowLogo(true);
+    } else {
+      setShowLogo(false);
+    }
+  }, [isLoading, isNavigating]);
+
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 99998 }}>
+
+      {/* Colored panels — only shown during link navigation, not on initial load */}
+      {isNavigating && COLORS.map((color, i) => (
+        <LoaderPanel key={color} color={color} index={i} isLoading={isLoading} />
       ))}
 
-      {/* Logo — appears after all panels are in, fades out when exiting */}
+      {/* On initial load: plain pink background matching homepage */}
+      {!isNavigating && isLoading && (
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#f9c4d2", zIndex: 0 }} />
+      )}
+
+      {/* Logo — always shown during load */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center"
-        style={{ zIndex: COLORS.length }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: phase === "out" ? 0 : 1 }}
-        transition={{
-          duration: 0.4,
-          delay: phase === "in" ? ALL_IN : 0,
-        }}
+        style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: COLORS.length }}
+        animate={{ opacity: showLogo ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
       >
         <img
           src="/footerLogoBlack.png"

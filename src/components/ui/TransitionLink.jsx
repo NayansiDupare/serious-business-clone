@@ -1,17 +1,15 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useNavigation } from "../../context/NavigationContext";
 
 export default function TransitionLink({ to, children, className, onClick, ...props }) {
   const location = useLocation();
-  const navigate = useNavigate();
+  const { navigateTo } = useNavigation();
 
   const handleClick = (e) => {
+    e.preventDefault();
     if (onClick) onClick(e);
-    // Prevent navigation if already on this page
-    if (location.pathname === to) {
-      e.preventDefault();
-      return;
-    }
-    // Otherwise, let Link handle navigation
+    if (location.pathname === to) return;
+    navigateTo(to);
   };
 
   return (
