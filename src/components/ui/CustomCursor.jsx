@@ -24,7 +24,8 @@ export default function CustomCursor() {
 
     const handleMouseOver = (e) => {
       const target = e.target;
-      if (target.closest('a') || target.closest('button') || target.closest('.group') || target.closest('.pointer-events-auto')) {
+      // Removed .group to prevent ring expansion on image cards as requested
+      if (target.closest('a') || target.closest('button') || target.closest('.pointer-events-auto')) {
         setIsHovering(true);
       } else {
         setIsHovering(false);
@@ -62,14 +63,14 @@ export default function CustomCursor() {
     <>
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-4 h-4 rounded-full bg-[#be185d] pointer-events-none z-[10001] hidden md:block shadow-sm"
+        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-[#f43f5e]/80 pointer-events-none z-[10001] hidden md:block shadow-sm"
       />
       <div
         ref={ringRef}
         className="fixed top-0 left-0 pointer-events-none z-[10000] hidden md:block"
       >
         <div
-          className={`w-14 h-14 rounded-full transition-all duration-300 ease-out flex items-center justify-center ${isHovering ? 'scale-[2] bg-[#be185d]/20 opacity-100' : 'scale-100 opacity-0'
+          className={`w-14 h-14 rounded-full transition-all duration-300 ease-out flex items-center justify-center ${isHovering ? 'scale-[1.8] bg-[#f43f5e]/15 opacity-100' : 'scale-100 opacity-0'
             }`}
         />
       </div>
