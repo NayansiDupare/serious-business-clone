@@ -48,14 +48,14 @@ export default function About() {
   const fact = facts[current];
 
   return (
-    <div className="w-full min-h-screen px-6 py-24 md:py-32 flex items-center max-w-[1400px] mx-auto text-black relative">
-      <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-16">
+    <div className="w-full min-h-screen px-6 py-24 md:py-32 flex items-center max-w-[1100px] mx-auto text-black relative">
+      <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-20">
 
         {/* Left Column - Big Text (formerly right) */}
-        <div className="md:col-span-8 flex flex-col justify-center">
+        <div className="md:col-span-7 flex flex-col justify-center">
           <Reveal>
             <h2
-              className="text-[1.8rem] sm:text-[2.5rem] md:text-[5vw] font-medium leading-[1.1] tracking-tight mb-12"
+              className="text-[1.8rem] sm:text-[2.5rem] md:text-[3.5vw] font-medium leading-[1.1] tracking-tight mb-12"
               style={{ fontFamily: "var(--font-geist-sans)" }}
             >
               Crafting premium <br />
@@ -73,7 +73,7 @@ export default function About() {
         </div>
 
         {/* Right Column - Key Facts (formerly left) */}
-        <div className="md:col-span-4 flex flex-col justify-center">
+        <div className="md:col-span-5 flex flex-col justify-center">
           <div className="flex items-center justify-between border-b border-black mb-6 pb-2 text-sm font-semibold tracking-wider uppercase">
             <span>Key Facts</span>
             <span>{String(current + 1).padStart(2, "0")} / {String(facts.length).padStart(2, "0")}</span>
@@ -90,7 +90,7 @@ export default function About() {
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
                 <h3
-                  className="text-[3.5rem] md:text-[4.5rem] font-medium leading-none mb-4 whitespace-pre-line"
+                  className="text-[2.5rem] md:text-[3.2rem] font-medium leading-none mb-4 whitespace-pre-line"
                   style={{ fontFamily: "var(--font-geist-sans)" }}
                 >
                   {fact.value}
