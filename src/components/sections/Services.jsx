@@ -7,19 +7,19 @@ export default function ServiceBlock({
   list,
   textColor = "text-[#1a1a1a]",
   imageContent,
-
+  direction = "left",
 }) {
   return (
-    <div className={`w-full h-auto flex flex-col md:flex-row px-6 md:px-12 py-6 md:py-8 ${textColor}`}>
+    <div className={`w-full min-h-full flex flex-col md:flex-row px-6 md:px-12 py-12 md:py-16 lg:py-20 ${textColor} justify-center`}>
 
       {/* Left Half (Text + Lists) */}
-      <div className="w-full md:w-1/2 flex flex-col justify-start mb-12 md:mb-0">
+      <div className="w-full md:w-1/2 flex flex-col justify-center mb-12 md:mb-0">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
+          viewport={{ once: true, margin: "-20%" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[14vw] md:text-[6vw] lg:text-[7vw] font-black leading-[0.9] tracking-tighter mb-4 md:mb-6 text-inherit"
+          className="text-[14vw] md:text-[6vw] lg:text-[7vw] font-black leading-[0.9] tracking-tighter mb-8 md:mb-12 lg:mb-16 text-inherit"
           style={{ fontFamily: "var(--font-geist-sans)" }}
         >
           {title}
@@ -28,7 +28,7 @@ export default function ServiceBlock({
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
+          viewport={{ once: true, margin: "-20%" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           className="flex flex-col md:flex-row gap-6 md:gap-8 max-w-[95%]"
         >
@@ -45,9 +45,9 @@ export default function ServiceBlock({
       <motion.div
         initial={{ opacity: 0, x: 120 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-10%" }}
+        viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        className="w-full md:w-1/2 flex items-start justify-end"
+        className="w-full md:w-1/2 flex items-center justify-end"
       >
         <div className="w-full md:w-[85%] lg:w-[75%] aspect-[4/3] rounded-md overflow-hidden relative shadow-sm">
           {imageContent}

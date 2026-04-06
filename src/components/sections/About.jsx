@@ -51,7 +51,28 @@ export default function About() {
     <div className="w-full min-h-screen px-6 py-24 md:py-32 flex items-center max-w-[1400px] mx-auto text-black relative">
       <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-16">
 
-        {/* Left Column - Key Facts */}
+        {/* Left Column - Big Text (formerly right) */}
+        <div className="md:col-span-8 flex flex-col justify-center">
+          <Reveal>
+            <h2
+              className="text-[1.8rem] sm:text-[2.5rem] md:text-[5vw] font-medium leading-[1.1] tracking-tight mb-12"
+              style={{ fontFamily: "var(--font-geist-sans)" }}
+            >
+              Crafting premium <br />
+              brands for scaleups <br />
+              that make people smile.
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.4}>
+            <button className="px-6 py-3 rounded-full bg-white text-black text-sm font-semibold flex items-center gap-2 transition-all duration-300 hover:bg-[#1a1a1a] hover:text-white hover:scale-105 shadow-sm border border-transparent hover:border-[#1a1a1a]">
+              <span>About us</span>
+              <span>→</span>
+            </button>
+          </Reveal>
+        </div>
+
+        {/* Right Column - Key Facts (formerly left) */}
         <div className="md:col-span-4 flex flex-col justify-center">
           <div className="flex items-center justify-between border-b border-black mb-6 pb-2 text-sm font-semibold tracking-wider uppercase">
             <span>Key Facts</span>
@@ -108,27 +129,6 @@ export default function About() {
               />
             ))}
           </div>
-        </div>
-
-        {/* Right Column - Big Text */}
-        <div className="md:col-span-8 flex flex-col justify-center">
-          <Reveal>
-            <h2
-              className="text-[1.8rem] sm:text-[2.5rem] md:text-[5vw] font-medium leading-[1.1] tracking-tight mb-12"
-              style={{ fontFamily: "var(--font-geist-sans)" }}
-            >
-              Crafting premium <br />
-              brands for scaleups <br />
-              that make people smile.
-            </h2>
-          </Reveal>
-
-          <Reveal delay={0.4}>
-            <button className="px-6 py-3 rounded-full bg-white text-black text-sm font-semibold flex items-center gap-2 transition-all duration-300 hover:bg-[#1a1a1a] hover:text-white hover:scale-105 shadow-sm border border-transparent hover:border-[#1a1a1a]">
-              <span>About us</span>
-              <span>→</span>
-            </button>
-          </Reveal>
         </div>
 
       </div>

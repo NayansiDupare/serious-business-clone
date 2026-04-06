@@ -4,35 +4,57 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STICKY_TOP = 64; // px — matches Navbar height
-
 export default function StackContainer({ panels }) {
   const containerRef = useRef(null);
-  const innerRefs = useRef([]);
+  const panelsRef = useRef([]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      innerRefs.current.forEach((inner, i) => {
-        if (!inner || i === 0) return; // first panel needs no entrance
+      const allPanels = panelsRef.current;
+      if (allPanels.length <= 1) return;
 
-        // The panel section is sticky at STICKY_TOP.
-        // Animate inner content rising up as the panel scrolls from bottom into its stuck position.
-        gsap.fromTo(
-          inner,
-          { y: 80, scale: 0.97 },
-          {
-            y: 0,
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: inner.parentElement, // the sticky <section>
-              start: "top bottom",          // when section top hits viewport bottom
-              end: `top ${STICKY_TOP}px`,   // when section reaches its stuck position
-              scrub: 0.6,
-              invalidateOnRefresh: true,
-            },
-          }
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top+=104", // Account for Navbar height (approx)
+          end: () => `+=${window.innerHeight * (allPanels.length - 1)}`,
+          pin: true,
+          scrub: true,
+          invalidateOnRefresh: true,
+        }
+      });
+
+      allPanels.forEach((panel, i) => {
+        if (i === 0) return;
+
+        const prevPanel = allPanels[i - 1];
+        const prevOverlay = prevPanel.querySelector(".card-overlay");
+
+        tl.fromTo(panel, 
+          { yPercent: 100 }, 
+          { yPercent: 0, ease: "none" }
+        )
+        .to(prevPanel, 
+          { 
+            scale: 0.94, 
+            filter: "blur(2px)",
+            ease: "none" 
+          }, 
+          "<"
+        )
+        .to(prevOverlay, 
+          { 
+            opacity: 0.7, 
+            ease: "none" 
+          }, 
+          "<"
         );
+
+        // Hide panels that are 2+ levels deep to save performance and prevent ghosting
+        if (i > 1) {
+          const depthPanel = allPanels[i - 2];
+          tl.to(depthPanel, { autoAlpha: 0, duration: 0.1 }, "<");
+        }
       });
     }, containerRef);
 
@@ -40,25 +62,31 @@ export default function StackContainer({ panels }) {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full">
+    <div ref={containerRef} className="relative w-full overflow-hidden h-[calc(100vh-100px)]">
       {panels.map(({ bg, children }, i) => (
         <section
           key={i}
+          ref={el => (panelsRef.current[i] = el)}
           style={{
             backgroundColor: bg,
             zIndex: 10 + i,
-            position: "sticky",
-            top: STICKY_TOP,
-            height: `calc(100vh - ${STICKY_TOP}px)`,
-            boxShadow: i > 0 ? "0 -24px 48px rgba(0,0,0,0.14)" : "none",
-            overflow: "hidden",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            boxShadow: "0 -30px 60px rgba(0,0,0,0.2)",
+            opacity: 1, // Force opaque
+            display: "block",
           }}
-          className="w-full"
+          className="flex flex-col"
         >
-          <div
-            ref={(el) => (innerRefs.current[i] = el)}
-            style={{ height: "100%", willChange: "transform" }}
-          >
+          {/* Overlay for dimming instead of panel opacity to prevent ghosting */}
+          <div 
+            className="card-overlay absolute inset-0 bg-black pointer-events-none z-10" 
+            style={{ opacity: 0 }}
+          />
+          <div className="flex-1 w-full overflow-hidden relative z-0">
             {children}
           </div>
         </section>
