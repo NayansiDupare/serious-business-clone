@@ -48,7 +48,7 @@ export default function About() {
   const fact = facts[current];
 
   return (
-    <div className="w-full min-h-screen px-6 py-24 md:py-32 flex items-center max-w-[1100px] mx-auto text-black relative">
+    <div className="w-full min-h-screen px-6 py-24 md:py-32 flex items-center max-w-[1100px] mx-auto text-black relative bg-[#F4EDD9]">
       <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-20">
 
         {/* Left Column - Big Text (formerly right) */}

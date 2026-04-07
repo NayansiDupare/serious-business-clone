@@ -2,7 +2,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigation } from "../../context/NavigationContext";
 
-const COLORS = ["#1a1a1a", "#fac541", "#cba6f7", "#f9c4d2"];
+const COLORS = ["#1a1a1a", "#fac541", "#cba6f7", "#F4EDD9"];
 const SLIDE = 0.55;
 const STAGGER = 0.08;
 const ALL_IN_MS = (SLIDE + (COLORS.length - 1) * STAGGER) * 1000; // ~790ms
@@ -59,9 +59,9 @@ export default function Loader() {
         <LoaderPanel key={color} color={color} index={i} isLoading={isLoading} />
       ))}
 
-      {/* On initial load: plain pink background matching homepage */}
+      {/* On initial load: plain background matching homepage */}
       {!isNavigating && isLoading && (
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "#f9c4d2", zIndex: 0 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "#F4EDD9", zIndex: 0 }} />
       )}
 
       {/* Logo — always shown during load */}

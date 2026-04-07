@@ -14,15 +14,15 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   useLayoutEffect(() => {
     // Set initial body color for home page
-    document.body.style.backgroundColor = "#f9c4d2";
+    document.body.style.backgroundColor = "#F4EDD9";
     document.body.style.color = "#111111";
 
     const ctx = gsap.context(() => {
       gsap.to("body", {
         backgroundColor: "#111111",
-        color: "#f9c4d2",
-        "--accent-color": "#f9c4d2",
-        "--accent-bg": "#f9c4d2",
+        color: "#F4EDD9",
+        "--accent-color": "#F4EDD9",
+        "--accent-bg": "#F4EDD9",
         immediateRender: false,
         ease: "power2.inOut",
         scrollTrigger: {
@@ -35,7 +35,7 @@ export default function Home() {
       });
 
       gsap.to("body", {
-        backgroundColor: "#f9c4d2",
+        backgroundColor: "#F4EDD9",
         color: "#111111",
         "--accent-color": "#111111",
         "--accent-bg": "#ffffff",
@@ -51,7 +51,7 @@ export default function Home() {
       });
 
       gsap.to("body", {
-        backgroundColor: "#f9c4d2",
+        backgroundColor: "#F4EDD9",
         color: "#111111",
         "--accent-color": "#111111",
         "--accent-bg": "#ffffff",

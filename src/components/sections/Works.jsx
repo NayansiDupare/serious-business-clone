@@ -85,7 +85,7 @@ export default function Works() {
       </div>
 
       <div className="mt-20 flex justify-center">
-        <TransitionLink to="/work" className="px-8 py-4 rounded-full border border-current font-semibold hover:bg-[#1a1a1a] hover:text-[#fbc1d4] transition-colors inline-block">
+        <TransitionLink to="/work" className="px-8 py-4 rounded-full border border-current font-semibold hover:bg-[#1a1a1a] hover:text-[#F4EDD9] transition-colors inline-block">
           See more projects
         </TransitionLink>
       </div>

@@ -3,7 +3,7 @@ import Reveal from "../ui/Reveal";
 
 export default function Footer() {
   return (
-    <footer className="w-full pt-20 pb-6 px-6 relative overflow-hidden z-50">
+    <footer className="w-full pt-20 pb-6 px-6 relative overflow-hidden z-50 bg-[#F4EDD9]">
 
       {/* Grid Links Section */}
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between mb-16 md:mb-32 text-base font-medium tracking-tight">

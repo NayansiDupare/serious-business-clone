@@ -4,7 +4,7 @@ import Reveal from "../ui/Reveal";
 
 const cards = [
   {
-    bg: "#fbc1d4",
+    bg: "#F4EDD9",
     brand: "Marshall Haber",
     label: "The Heart of the Shift:",
     title: "Brand Messaging is the\nSoul of Rebranding",
@@ -52,14 +52,14 @@ export default function Insights() {
   const textColor = useTransform(
     scrollYProgress,
     [0, 1],
-    ["#1a1a1a", "#fbc1d4"]
+    ["#1a1a1a", "#F4EDD9"]
   );
 
   // Subtext / muted: #555 → #fbc1d4 at lower opacity
   const mutedColor = useTransform(
     scrollYProgress,
     [0, 1],
-    ["#555555", "#fbc1d4"]
+    ["#555555", "#F4EDD9"]
   );
 
   // Border: dark/light → white/10
@@ -73,7 +73,7 @@ export default function Insights() {
   const buttonBorder = useTransform(
     scrollYProgress,
     [0, 1],
-    ["#1a1a1a", "#fbc1d4"]
+    ["#1a1a1a", "#F4EDD9"]
   );
 
   return (

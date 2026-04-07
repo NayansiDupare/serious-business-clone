@@ -68,7 +68,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[100dvh] bg-primary">
+    <section ref={containerRef} className="relative w-full h-[100dvh] bg-[#F4EDD9]">
 
       {/* LOGO — Upper Center */}
       <div
