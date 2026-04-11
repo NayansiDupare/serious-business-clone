@@ -126,7 +126,6 @@
   flex: 1;
   margin-left: 250px;
   padding: 32px 40px 80px;
-  max-width: 860px;
 }
 
 /* ═══════ Header ═══════ */
@@ -399,9 +398,15 @@
 
 /* ═══════ List Items ═══════ */
 .listItems {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .listItems {
+    grid-template-columns: 1fr;
+  }
 }
 
 .listItem {
