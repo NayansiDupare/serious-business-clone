@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./AdminPanel.module.css";
 
-const API = "http://localhost:5000/api/admin";
+const API = "/api/admin";
 const KEY = "234583419264838";
 const headers = { "x-admin-key": KEY };
 const jsonHeaders = { "x-admin-key": KEY, "Content-Type": "application/json" };

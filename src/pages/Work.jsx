@@ -20,7 +20,7 @@ export default function Work() {
 
   // Fetch CMS projects and merge with hardcoded
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/pages/work")
+    fetch("/api/admin/pages/work")
       .then(res => res.json())
       .then(data => {
         const cms = data?.sections?.projects || [];
