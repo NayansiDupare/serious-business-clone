@@ -45,10 +45,10 @@ export default function Works() {
 
       <Reveal>
         <h2
-          className="text-[clamp(1.8rem,8vw,4.5rem)] md:text-[5.5vw] lg:text-[4.5vw] font-bold leading-[1.1] mb-16 text-inherit"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
+          className="text-[clamp(1.8rem,8vw,4.5rem)] md:text-[5.5vw] lg:text-[4.5vw] font-bold leading-[1.1] mb-16 text-inherit text-center"
+          style={{ fontFamily: "'PP Mori', sans-serif" }}
         >
-          We partner with <span className="italic font-normal" style={{ fontFamily: "'Playfair Display', serif" }}>serious scaleups</span> <br className="hidden md:block" /> in Europe and the Americas
+          We partner with serious scaleups <br className="hidden md:block" /> <span className="italic font-normal" style={{ fontFamily: "'Nib Pro', serif" }}>in Europe and the Americas</span>
         </h2>
       </Reveal>
 

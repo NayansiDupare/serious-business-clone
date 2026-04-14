@@ -29,21 +29,21 @@
 }
 
 .mainParagraph {
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  line-height: 1.25;
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  line-height: 1.3;
   color: #020817;
   margin: 0;
   letter-spacing: -0.01em;
 }
 
 .mainParagraph strong {
-  font-family: var(--font-primary, sans-serif);
+  font-family: var(--font-primary);
   font-weight: 600;
   letter-spacing: -0.04em;
 }
 
 .mainParagraph span {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Nib Pro", serif;
   font-weight: 300;
   color: var(--color-navy);
   opacity: 0.6;
@@ -139,14 +139,14 @@
 }
 
 .ctaTextTop strong {
-  font-family: var(--font-primary, sans-serif);
+  font-family: var(--font-primary);
   font-weight: 600;
   display: block;
   margin-bottom: 2px;
 }
 
 .ctaTextTop span {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Nib Pro", serif;
   font-weight: 300;
   opacity: 0.85;
 }

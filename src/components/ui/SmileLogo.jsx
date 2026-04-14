@@ -28,7 +28,7 @@ export default function SmileLogo() {
           style={{ 
             fontSize: "74px", 
             fontWeight: "900", 
-            fontFamily: "var(--font-geist-sans)", 
+            fontFamily: "'PP Mori', sans-serif", 
             letterSpacing: "-0.08em",
             filter: "url(#pressed)"
           }}

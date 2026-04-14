@@ -227,7 +227,7 @@ const DesktopMenu = () => {
                     ref={(el) => (itemRefs.current[item.label] = el)}
                     onMouseEnter={() => handleItemEnter(item.label)}
                     onMouseLeave={handleItemLeave}
-                    className="relative flex items-center gap-0.5 hover:opacity-60 transition-opacity cursor-pointer"
+                    className="relative flex items-center gap-0.5 font-normal hover:font-bold transition-all cursor-pointer"
                   >
                     <TransitionLink to={item.to}>
                       <span>{item.label}</span>

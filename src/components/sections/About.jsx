@@ -51,7 +51,7 @@ export default function About() {
     <div className="w-full min-h-screen bg-[#020817]">
 
       {/* ✅ YOUR ORIGINAL CONTAINER (UNCHANGED DESIGN) */}
-      <div className="px-6 py-24 md:py-32 flex items-center max-w-[1100px] mx-auto text-[#F4EDD9] relative min-h-screen">
+      <div className="px-6 md:px-12 py-24 md:py-32 flex items-center max-w-[1400px] mx-auto text-[#F4EDD9] relative min-h-screen">
 
         <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-20">
 
@@ -59,8 +59,8 @@ export default function About() {
           <div className="md:col-span-7 flex flex-col justify-center">
             <Reveal>
               <h2
-                className="text-[1.8rem] sm:text-[2.5rem] md:text-[4vw] font-bold tracking-tighter mb-12"
-                style={{ fontFamily: "'Poppins', sans-serif" }}
+                className="text-[2rem] sm:text-[2.5rem] md:text-[72px] font-semibold tracking-tighter mb-12"
+                style={{ fontFamily: "'PP Mori', sans-serif", lineHeight: 1 }}
               >
                 Crafting premium <br />
                 brands for scaleups <br />
@@ -78,7 +78,7 @@ export default function About() {
 
           {/* Right Column */}
           <div className="md:col-span-5 flex flex-col justify-center">
-            <div className="flex items-center justify-between border-b border-[#F4EDD9]/20 mb-6 pb-2 text-sm font-bold tracking-wider uppercase" style={{ fontFamily: "'Poppins', sans-serif" }}>
+            <div className="flex items-center justify-between border-b border-[#F4EDD9]/20 mb-6 pb-2 text-sm font-bold tracking-wider uppercase" style={{ fontFamily: "'PP Mori', sans-serif" }}>
               <span>Key Facts</span>
               <span>
                 {String(current + 1).padStart(2, "0")} /{" "}
@@ -97,11 +97,11 @@ export default function About() {
                 >
                   <h3
                     className="text-[2.5rem] md:text-[3.8rem] font-bold leading-none mb-4 whitespace-pre-line"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
+                    style={{ fontFamily: "'PP Mori', sans-serif" }}
                   >
                     {fact.value}
                   </h3>
-                  <p className="text-sm font-medium tracking-wide leading-relaxed" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  <p className="text-sm font-medium tracking-wide leading-relaxed" style={{ fontFamily: "'PP Mori', sans-serif" }}>
                     {fact.label}
                   </p>
                 </motion.div>
