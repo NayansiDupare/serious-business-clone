@@ -47,9 +47,9 @@ const cards = [
 ];
 
 const cardInitial = [
-  { opacity: 0, x: -120 },
-  { opacity: 0, y: 80 },
-  { opacity: 0, x: 120 },
+  { opacity: 0, x: -150 },
+  { opacity: 0, y: 150, scale: 0.95 },
+  { opacity: 0, x: 150 },
 ];
 
 export default function Insights() {
@@ -108,14 +108,14 @@ export default function Insights() {
       style={{ backgroundColor }}
       className="w-full relative"
     >
-      <div className="px-6 py-14 md:py-28 max-w-[1400px] mx-auto">
+      <div className="px-6 py-14 md:py-28 max-w-[1600px] mx-auto">
 
         {/* Heading row — title left, button right */}
         <div className="flex items-start justify-between gap-6 mb-10 md:mb-14">
           <Reveal>
             <motion.h2
-              style={{ color: textColor, fontFamily: "var(--font-geist-sans)", fontSize: "clamp(2rem, 6vw, 4.5rem)" }}
-              className="font-black leading-[1.0] tracking-tight"
+              style={{ color: textColor, fontFamily: "'Poppins', sans-serif", fontSize: "clamp(2rem, 6vw, 4.5rem)" }}
+              className="font-bold leading-[1.0] tracking-tight"
             >
               Latest insights for<br />scaleup teams
             </motion.h2>
@@ -130,13 +130,13 @@ export default function Insights() {
           >
             <motion.button
               style={{ borderColor: buttonBorder, color: buttonBorder, backgroundColor: "transparent" }}
-              className="flex items-center gap-2 px-5 py-2.5 border rounded-full text-sm font-semibold whitespace-nowrap"
+              className="flex items-center gap-2 px-4 py-1.5 border-[0.5px] border-opacity-30 rounded-full text-[11px] font-bold uppercase tracking-wider whitespace-nowrap"
             >
               What's trending.
             </motion.button>
             <motion.div
               style={{ borderColor: buttonBorder, color: buttonBorder }}
-              className="w-10 h-10 border rounded-full flex items-center justify-center text-base font-bold shrink-0"
+              className="w-8 h-8 border-[0.5px] border-opacity-30 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
             >
               ←
             </motion.div>
@@ -148,11 +148,11 @@ export default function Insights() {
           <div
             className="
       flex flex-col 
-      lg:grid lg:grid-cols-3 
+      md:grid md:grid-cols-3 
       px-4 md:px-0
     "
             style={{
-              gap: "clamp(1.5rem, 3vw, 3rem)",
+              gap: "1rem",
             }}
           >
             {cards.map((card, i) => (
@@ -168,17 +168,17 @@ export default function Insights() {
                 }}
                 className="
           w-full 
-          lg:flex-1 
           flex flex-col gap-0 
           cursor-pointer
+          group
         "
               >
                 {/* Card box */}
                 <div
-                  className="w-full rounded-2xl flex flex-col items-center justify-center text-center"
+                  className="w-full flex flex-col items-center justify-center text-center"
                   style={{
                     backgroundColor: card.bg,
-                    aspectRatio: "4/3",
+                    aspectRatio: "1.8 / 1",
                     padding: "clamp(24px, 4vw, 48px)",
                     color:
                       card.bg === "#2B59C3" || card.bg === "#0B0215"
@@ -204,20 +204,20 @@ export default function Insights() {
 
                   {card.titleLarge ? (
                     <h3
-                      className="font-black leading-tight tracking-tighter"
+                      className="font-bold leading-tight tracking-tighter"
                       style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: "clamp(2rem, 5vw, 3.2rem)",
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
                       }}
                     >
                       {card.titleLarge}
                     </h3>
                   ) : (
                     <h3
-                      className="font-black leading-tight tracking-tight"
+                      className="font-bold leading-tight tracking-tight"
                       style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: "clamp(1.3rem, 2.8vw, 2rem)",
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)",
                       }}
                     >
                       {card.title.split("\n").map((line, j, arr) => (
@@ -244,7 +244,7 @@ export default function Insights() {
                     color: textColor,
                     fontSize: "clamp(0.95rem, 1.8vw, 1.15rem)",
                   }}
-                  className="font-semibold leading-snug mt-5 mb-4"
+                  className="font-semibold leading-snug mt-5 mb-4 group-hover-underline"
                 >
                   {card.desc}
                 </motion.p>
@@ -266,50 +266,11 @@ export default function Insights() {
           </div>
         </div>
 
-        {/* Relationships */}
-        <motion.div
-          style={{ borderTopColor: borderColor }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 border-t pt-10 md:pt-16 mb-12 md:mb-20 items-center"
-        >
-          <motion.h3
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            style={{ color: textColor }}
-            className="md:col-span-3 text-2xl font-playfair font-semibold tracking-tight"
-          >
-            In a lasting<br />relationship with:
-          </motion.h3>
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="md:col-span-9 overflow-hidden relative w-full flex"
-            style={{ maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}
-          >
-            <motion.div
-              style={{ color: textColor }}
-              className="animate-marquee flex items-center font-black text-xl tracking-widest uppercase whitespace-nowrap w-max"
-            >
-              {[0, 1].map((set) => (
-                <div key={set} className="px-8 flex items-center gap-16">
-                  <div>Frontify</div><div>vay</div>
-                  <div className="text-sm">USERCENTRICS</div>
-                  <div>arculus</div><div>remberg</div>
-                  <div>NANOTEMPER</div><div>zellerfeld</div>
-                  <div className="text-xs">UNTERNEHMERTUM</div>
-                </div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </motion.div>
 
         {/* Awards */}
         <motion.div
-          style={{ borderTopColor: borderColor }}
           className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 border-t pt-10 md:pt-16 mb-10 md:mb-20"
+          style={{ borderTopColor: borderColor, fontFamily: "'Poppins', sans-serif" }}
         >
           <motion.h3
             initial={{ opacity: 0, x: -60 }}

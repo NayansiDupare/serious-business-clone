@@ -8,7 +8,7 @@ import TransitionLink from '../components/ui/TransitionLink';
 gsap.registerPlugin(ScrollTrigger);
 import StackContainer from '../components/layout/StackContainer';
 import ServiceBlock, {
-  StrategyImage,
+  StrategyVideo,
   VisualImage,
   WebsiteImage,
   ProductImage,
@@ -51,7 +51,7 @@ const brandingPanels = [
         title="Brand Strategy"
         description="It's the core of your company's identity. It guides all business decisions, ensuring a consistent and impactful presence in the market."
         list={['Research & Insights', 'Brand Model', 'Positioning', 'Value proposition', 'Messaging', 'Verbal Identity', 'Naming']}
-        imageContent={<StrategyImage />}
+        imageContent={<StrategyVideo />}
       />
     ),
   },
@@ -107,7 +107,7 @@ const brandingPanels = [
         title="Experiential"
         description="Immersive brand experiences that create real-world impact."
         list={['Brand Activations', 'Events & Installations', 'Spatial Design', 'Interactive Experiences']}
-        imageContent={<StrategyImage />}
+        imageContent={<StrategyVideo />}
       />
     ),
   },

@@ -65,15 +65,6 @@ export default function CustomCursor() {
         ref={dotRef}
         className="fixed top-0 left-0 w-3 h-3 rounded-full bg-[#2B59C3]/80 pointer-events-none z-[10001] hidden md:block shadow-sm"
       />
-      <div
-        ref={ringRef}
-        className="fixed top-0 left-0 pointer-events-none z-[10000] hidden md:block"
-      >
-        <div
-          className={`w-14 h-14 rounded-full transition-all duration-300 ease-out flex items-center justify-center ${isHovering ? 'scale-[1.8] bg-[#2B59C3]/15 opacity-100' : 'scale-100 opacity-0'
-            }`}
-        />
-      </div>
     </>
   );
 }

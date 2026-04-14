@@ -45,10 +45,10 @@ export default function Works() {
 
       <Reveal>
         <h2
-          className="text-[clamp(1.8rem,10vw,5rem)] md:text-[7vw] lg:text-[5vw] font-black leading-[0.9] uppercase mb-16 text-inherit"
-          style={{ fontFamily: "var(--font-geist-sans)" }}
+          className="text-[clamp(1.8rem,8vw,4.5rem)] md:text-[5.5vw] lg:text-[4.5vw] font-bold leading-[1.1] mb-16 text-inherit"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          We partner with ambitious <br className="hidden md:block" /> scaleups in New York <br className="hidden md:block" /> and the Americas
+          We partner with <span className="italic font-normal" style={{ fontFamily: "'Playfair Display', serif" }}>serious scaleups</span> <br className="hidden md:block" /> in Europe and the Americas
         </h2>
       </Reveal>
 
@@ -73,7 +73,9 @@ export default function Works() {
                 </div>
 
                 <Reveal>
-                  <h3 className="text-2xl font-bold mb-2">{p.title} | {p.subtitle}</h3>
+                  <h3 className="text-2xl font-bold mb-2">
+                    <span className="group-hover-underline">{p.title} | {p.subtitle}</span>
+                  </h3>
                 </Reveal>
                 <Reveal delay={0.4}>
                   <p className="text-sm font-medium opacity-60 uppercase tracking-wide">{p.category}</p>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import AnimatedCounter from "../ui/AnimatedCounter";
+import strategyVid from "../../assets/vid2.mp4";
 
 export default function ServiceBlock({
   title,
@@ -22,9 +23,9 @@ export default function ServiceBlock({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-inherit font-black leading-[0.88] tracking-tighter"
+          className="text-inherit font-bold leading-[0.88] tracking-tighter mb-4 md:mb-10"
           style={{
-            fontFamily: "var(--font-geist-sans)",
+            fontFamily: "'Poppins', sans-serif",
             fontSize: "clamp(2.4rem, 6vw, 5.5rem)",
           }}
         >
@@ -38,15 +39,15 @@ export default function ServiceBlock({
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
 
-          className="flex flex-col md:flex-row gap-6 md:gap-10"
+          className="flex flex-col md:flex-row gap-6 md:gap-16"
         >
           <p
-            className="text-[17px] md:text-[19px] font-medium leading-[1.5] w-full md:w-1/2 opacity-85 tracking-tight"
-            style={{ fontFamily: "var(--font-geist-sans)" }}
+            className="text-[17px] md:text-[19px] font-medium leading-[1.6] w-full md:w-1/2 opacity-90 tracking-tight"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
           >
             {description}
           </p>
-          <ul className="text-[15px] md:text-[16px] font-semibold leading-relaxed w-full md:w-1/2 space-y-[7px]">
+          <ul className="text-[15px] md:text-[16px] font-semibold leading-[1.8] w-full md:w-1/2 space-y-[10px]" style={{ fontFamily: "'Poppins', sans-serif" }}>
             {list.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
@@ -72,17 +73,25 @@ export default function ServiceBlock({
   );
 }
 
-// Beautiful Placeholders replicating the images from the screenshot
-export const StrategyImage = () => (
-  <div className="w-full h-full bg-gradient-to-br from-[#ff6a00] to-[#e63900] text-white p-6 md:p-8 flex flex-col items-start justify-center relative overflow-hidden">
-    <div className="absolute top-6 right-6 text-sm font-bold tracking-tighter flex items-center gap-2">
-      <div className="w-4 h-4 bg-white/20 rotate-45" /> asconsystems
+export const StrategyVideo = () => (
+  <div className="w-full h-full bg-[#0b0215] text-white relative overflow-hidden flex items-center justify-center">
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover opacity-60"
+      src={strategyVid}
+    />
+    <div className="relative z-10 p-6 md:p-8 flex flex-col items-start justify-center w-full h-full">
+      <div className="absolute top-6 right-6 text-sm font-bold tracking-tighter flex items-center gap-2">
+        <div className="w-4 h-4 bg-white/20 rotate-45" /> strategy.mp4
+      </div>
+      <h3 className="text-[28px] md:text-[32px] font-bold leading-[1.1] tracking-tighter" style={{ fontFamily: "'Poppins', sans-serif" }}>
+        Imagination <br /> beyond limits
+      </h3>
     </div>
-    <h3 className="text-[28px] md:text-[38px] font-medium leading-[1.1] tracking-tight z-10" style={{ fontFamily: "var(--font-geist-sans)" }}>
-      Imagination <br /> beyond limits
-    </h3>
-    <div className="absolute -bottom-10 -right-10 w-[80%] aspect-square border-4 border-white/20 rounded-full blur-[1px] scale-150" />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent mix-blend-overlay pointer-events-none" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
   </div>
 );
 

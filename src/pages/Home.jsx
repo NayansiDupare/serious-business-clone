@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import Hero, { HeroTopText } from "../components/sections/Hero";
 import AboutSection from "../components/sections/About";
-import ServiceBlock, { StrategyImage, VisualImage, WebsiteImage, ProductImage } from "../components/sections/Services";
+import ServiceBlock, { StrategyVideo, VisualImage, WebsiteImage, ProductImage } from "../components/sections/Services";
 import StackContainer from "../components/layout/StackContainer";
 import Works from "../components/sections/Works";
 import Insights from "../components/sections/Insights";
@@ -92,7 +92,7 @@ export default function Home() {
         title="Brand Strategy"
         description="It’s the core of your company’s identity. It guides all business decisions, ensuring a consistent and impactful presence in the market."
         list={["Research & Insights", "Brand Model", "Positioning", "Value proposition", "Messaging", "Verbal Identity", "Naming"]}
-        imageContent={<StrategyImage />}
+        imageContent={<StrategyVideo />}
         textColor="text-[#F4EDD9]"
       />
     },
@@ -135,8 +135,8 @@ export default function Home() {
       <Hero />
       <AboutSection />
 
-      <div className="w-full h-[8vh] flex items-end pb-2 px-6">
-        <span className="text-xl font-bold tracking-tighter opacity-60">Services</span>
+      <div className="w-full h-[12vh] flex items-end pb-4 px-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
+        <span className="text-[2.2rem] md:text-[3rem] font-bold tracking-tighter leading-none">Services</span>
       </div>
       <StackContainer panels={servicePanels} />
 

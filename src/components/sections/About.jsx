@@ -59,8 +59,8 @@ export default function About() {
           <div className="md:col-span-7 flex flex-col justify-center">
             <Reveal>
               <h2
-                className="text-[1.8rem] sm:text-[2.5rem] md:text-[3.5vw] font-medium leading-[1.1] tracking-tight mb-12"
-                style={{ fontFamily: "var(--font-geist-sans)" }}
+                className="text-[1.8rem] sm:text-[2.5rem] md:text-[4vw] font-bold tracking-tighter mb-12"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
               >
                 Crafting premium <br />
                 brands for scaleups <br />
@@ -78,7 +78,7 @@ export default function About() {
 
           {/* Right Column */}
           <div className="md:col-span-5 flex flex-col justify-center">
-            <div className="flex items-center justify-between border-b border-[#F4EDD9]/20 mb-6 pb-2 text-sm font-semibold tracking-wider uppercase">
+            <div className="flex items-center justify-between border-b border-[#F4EDD9]/20 mb-6 pb-2 text-sm font-bold tracking-wider uppercase" style={{ fontFamily: "'Poppins', sans-serif" }}>
               <span>Key Facts</span>
               <span>
                 {String(current + 1).padStart(2, "0")} /{" "}
@@ -96,12 +96,12 @@ export default function About() {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <h3
-                    className="text-[2.5rem] md:text-[3.2rem] font-medium leading-none mb-4 whitespace-pre-line"
-                    style={{ fontFamily: "var(--font-geist-sans)" }}
+                    className="text-[2.5rem] md:text-[3.8rem] font-bold leading-none mb-4 whitespace-pre-line"
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
                   >
                     {fact.value}
                   </h3>
-                  <p className="text-sm font-medium tracking-wide leading-relaxed">
+                  <p className="text-sm font-medium tracking-wide leading-relaxed" style={{ fontFamily: "'Poppins', sans-serif" }}>
                     {fact.label}
                   </p>
                 </motion.div>
