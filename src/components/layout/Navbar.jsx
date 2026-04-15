@@ -138,6 +138,7 @@ const DesktopMenu = () => {
   const [isMenuHovered, setIsMenuHovered] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 });
+  const { pathname } = useLocation();
   const staticStyle = { backgroundColor: "var(--accent-bg, #F4EDD9)", color: "var(--accent-text, #020817)" };
 
   const menuTimeoutRef = useRef(null);
@@ -221,13 +222,15 @@ const DesktopMenu = () => {
                 exit={{ y: -20 }}
                 className="flex gap-6 items-center whitespace-nowrap"
               >
-                {menuItems.map((item) => (
+                {menuItems.map((item) => {
+                  const isActive = pathname === item.to || (item.to !== "/" && pathname.startsWith(item.to));
+                  return (
                   <div
                     key={item.label}
                     ref={(el) => (itemRefs.current[item.label] = el)}
                     onMouseEnter={() => handleItemEnter(item.label)}
                     onMouseLeave={handleItemLeave}
-                    className="relative flex items-center gap-0.5 font-normal hover:font-bold transition-all cursor-pointer"
+                    className={`relative flex items-center gap-0.5 transition-all cursor-pointer ${isActive ? "font-bold opacity-100" : "font-normal opacity-50 hover:opacity-100 hover:font-bold"}`}
                   >
                     <TransitionLink to={item.to}>
                       <span>{item.label}</span>
@@ -244,7 +247,8 @@ const DesktopMenu = () => {
                       </motion.svg>
                     )}
                   </div>
-                ))}
+                  );
+                })}
               </motion.div>
             )}
           </AnimatePresence>

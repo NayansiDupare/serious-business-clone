@@ -70,6 +70,18 @@ export default function About() {
       transition={{ duration: 0.5 }}
       className={styles.pageWrapper}
     >
+      {/* Est. 2015 Hero */}
+      <section className={styles.estSection}>
+        <h1 className={styles.estHeading}>
+          Est. 2005
+        </h1>
+        <div className={styles.tagline}>
+          <p className={styles.taglineBold}>Crafting the future,</p>
+          <p className={styles.taglineItalic}>while having serious fun.</p>
+        </div>
+      </section>
+
+      {/* About Text */}
       <section
         ref={sectionRef}
         className={styles.heroSection}
@@ -91,7 +103,13 @@ export default function About() {
 
         <div className={styles.textContent}>
           <p className={styles.mainParagraph}>
-            <strong>SERIOUS.BUSINESS</strong> started in 2015 as a <strong>passion project</strong> at Hyper Island, Stockholm by a diverse group of creatives with the goal of re-defining what a serious business is really about: <strong>kindness and creativity.</strong>
+            <strong>MARSHALL.HABER</strong> <span>started in 2005 as a</span> <strong>passion project</strong> <span>at Hyper Island, Stockholm by a diverse group of creatives with the goal of re-defining what a serious business is really about:</span> <strong>kindness and creativity.</strong>
+          </p>
+          <p className={styles.mainParagraph} style={{ marginTop: '2rem' }}>
+            <span>That's why we craft our future with kindness to</span> <strong>create brands that make people smile.</strong>
+          </p>
+          <p className={styles.mainParagraph} style={{ marginTop: '2rem' }}>
+            <span>Today our</span> <strong>dream team</strong> <span>of 15 creatives with a global perspective has crafted a new generation of brands with</span> <strong>over 180 change-making scaleups</strong> <span>in Europe and the Americas, a living proof that it is culture that drives a serious business.</span>
           </p>
         </div>
       </section>

@@ -14,7 +14,7 @@ export default function Footer() {
     <footer id="main-footer" className={`w-full pt-20 pb-6 px-6 relative overflow-hidden z-50 ${bgClass}`}>
 
       {/* Grid Links Section */}
-      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between mb-16 md:mb-32 text-base font-medium tracking-tight">
+      <div className="w-full flex flex-col md:flex-row justify-between mb-16 md:mb-32 text-base font-medium tracking-tight">
         <div className="flex flex-col md:flex-row gap-8 md:gap-16 flex-1">
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
             <h4 className="text-[10px] uppercase font-bold tracking-widest mt-2 opacity-50">Explore</h4>

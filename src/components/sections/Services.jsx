@@ -12,7 +12,7 @@ export default function ServiceBlock({
   return (
     <div
       className={`w-full flex flex-col md:flex-row items-stretch ${textColor} relative`}
-      style={{ minHeight: "340px" }}
+      style={{ minHeight: "500px" }}
     >
       {/* LEFT: title + description + list */}
       <div className="w-full md:w-[60%] flex flex-col justify-start shrink-0 items-start p-6 md:p-10" style={{ gap: "clamp(6px, 1vh, 12px)" }}>
@@ -64,7 +64,7 @@ export default function ServiceBlock({
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         className="w-full md:w-[40%] flex items-start justify-end p-6 md:p-10"
       >
-        <div className="w-full max-w-[300px] aspect-square rounded-2xl overflow-hidden">
+        <div className="w-full max-w-[420px] aspect-square rounded-2xl overflow-hidden">
           {imageContent}
         </div>
       </motion.div>

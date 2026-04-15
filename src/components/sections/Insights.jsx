@@ -108,7 +108,7 @@ export default function Insights() {
       style={{ backgroundColor }}
       className="w-full relative"
     >
-      <div className="px-6 py-14 md:py-28 max-w-[1600px] mx-auto">
+      <div className="px-6 md:px-12 py-14 md:py-28 w-full">
 
         {/* Heading row — title left, button right */}
         <div className="flex items-start justify-between gap-6 mb-10 md:mb-14">
@@ -182,8 +182,8 @@ export default function Insights() {
                     padding: "clamp(24px, 4vw, 48px)",
                     color:
                       card.bg === "#2B59C3" || card.bg === "#0B0215"
-                        ? "#c2ba9dff"
-                        : "#1a1a1a",
+                        ? "#F4EDD9"
+                        : "#020817",
                   }}
                 >
                   <p className="text-[10px] font-bold uppercase tracking-[0.18em] mb-6 opacity-50">
@@ -196,7 +196,6 @@ export default function Insights() {
                       fontFamily: "'Nib Pro', serif",
                       fontStyle: "italic",
                       color: card.labelColor || "inherit",
-                      opacity: card.labelColor ? 1 : 0.7,
                     }}
                   >
                     {card.label}
@@ -277,9 +276,8 @@ export default function Insights() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            style={{ color: textColor }}
+            style={{ color: textColor, fontFamily: "'Nib Pro', serif" }}
             className="md:col-span-3 text-2xl italic font-semibold tracking-tight"
-            style={{ fontFamily: "'Nib Pro', serif" }}
           >
             Clients:
           </motion.h3>

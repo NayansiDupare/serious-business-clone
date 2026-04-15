@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import AnimatedCounter from "../ui/AnimatedCounter";
 import Reveal from "../ui/Reveal";
+import TransitionLink from "../ui/TransitionLink";
 
 const facts = [
   {
@@ -51,7 +52,7 @@ export default function About() {
     <div className="w-full min-h-screen bg-[#020817]">
 
       {/* ✅ YOUR ORIGINAL CONTAINER (UNCHANGED DESIGN) */}
-      <div className="px-6 md:px-12 py-24 md:py-32 flex items-center max-w-[1400px] mx-auto text-[#F4EDD9] relative min-h-screen">
+      <div className="px-6 md:px-12 py-24 md:py-32 flex items-center w-full text-[#F4EDD9] relative min-h-screen">
 
         <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-20">
 
@@ -69,10 +70,12 @@ export default function About() {
             </Reveal>
 
             <Reveal delay={0.4}>
-              <button className="px-6 py-3 rounded-full bg-[#F4EDD9] text-[#020817] text-sm font-semibold flex items-center gap-2 transition-all duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-sm border border-transparent hover:border-white">
-                <span>About us</span>
-                <span>→</span>
-              </button>
+              <TransitionLink to="/about">
+                <button className="px-6 py-3 rounded-full bg-[#F4EDD9] text-[#020817] text-sm font-semibold flex items-center gap-2 transition-all duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-sm border border-transparent hover:border-white">
+                  <span>About us</span>
+                  <span>→</span>
+                </button>
+              </TransitionLink>
             </Reveal>
           </div>
 
