@@ -135,7 +135,7 @@ export default function Home() {
       <Hero />
       <AboutSection />
 
-      <div className="w-full h-[12vh] flex items-end pb-4 px-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <div className="w-full h-[12vh] flex items-end pb-4 px-6" style={{ fontFamily: "'PP Mori', sans-serif" }}>
         <span className="text-[2.2rem] md:text-[3rem] font-bold tracking-tighter leading-none">Services</span>
       </div>
       <StackContainer panels={servicePanels} />

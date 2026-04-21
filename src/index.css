@@ -1,5 +1,149 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Poppins:wght@700&display=swap');
+
+@theme {
+  --font-sans: 'PP Mori', sans-serif;
+  --font-serif: 'Nib Pro', serif;
+}
+
+/* PP Mori Font */
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/pp-mori-font/PP Mori - Free for Personal Use v1.0/PPMori-Extralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/pp-mori-font/PP Mori - Free for Personal Use v1.0/PPMori-ExtralightItalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/pp-mori-font/PP Mori - Free for Personal Use v1.0/PPMori-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/pp-mori-font/PP Mori - Free for Personal Use v1.0/PPMori-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/pp-mori-font/PP Mori - Free for Personal Use v1.0/PPMori-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/pp-mori-font/PP Mori - Free for Personal Use v1.0/PPMori-SemiBoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Nib Pro Font */
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-Light.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-LightItalic.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-Regular.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-Italic.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-SemiBold.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-SemiBoldItalic.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-SemiBoldItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-Bold.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-BoldItalic.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-BoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-Black.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nib Pro';
+  src: url('/font-nib-pro/NibPro-BlackItalic.woff2') format('woff2'),
+       url('/font-nib-pro/NibPro-BlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* 🎨 Design System */
 :root {
@@ -16,6 +160,10 @@
   --color-pink: #f7c4d5;
 
   --bg: var(--color-navy);
+
+  /* Fonts */
+  --font-primary: 'PP Mori', sans-serif;
+  --font-serif: 'Nib Pro', serif;
 
   /* Theme Accents */
   --accent-color: #ffffff;
@@ -36,11 +184,12 @@ body {
   position: relative;
   background-color: var(--bg);
   color: var(--color-cream);
-  font-family: 'Inter', sans-serif;
+  font-family: 'PP Mori', sans-serif;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 /* Prevent GSAP pin-spacer from causing horizontal overflow */
 .pin-spacer {

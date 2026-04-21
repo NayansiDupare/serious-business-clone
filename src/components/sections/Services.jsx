@@ -12,7 +12,7 @@ export default function ServiceBlock({
   return (
     <div
       className={`w-full flex flex-col md:flex-row items-stretch ${textColor} relative`}
-      style={{ minHeight: "340px" }}
+      style={{ minHeight: "500px" }}
     >
       {/* LEFT: title + description + list */}
       <div className="w-full md:w-[60%] flex flex-col justify-start shrink-0 items-start p-6 md:p-10" style={{ gap: "clamp(6px, 1vh, 12px)" }}>
@@ -25,7 +25,7 @@ export default function ServiceBlock({
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="text-inherit font-bold leading-[0.88] tracking-tighter mb-4 md:mb-10"
           style={{
-            fontFamily: "'Poppins', sans-serif",
+            fontFamily: "'PP Mori', sans-serif",
             fontSize: "clamp(2.4rem, 6vw, 5.5rem)",
           }}
         >
@@ -43,11 +43,11 @@ export default function ServiceBlock({
         >
           <p
             className="text-[17px] md:text-[19px] font-medium leading-[1.6] w-full md:w-1/2 opacity-90 tracking-tight"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
+            style={{ fontFamily: "'PP Mori', sans-serif" }}
           >
             {description}
           </p>
-          <ul className="text-[15px] md:text-[16px] font-semibold leading-[1.8] w-full md:w-1/2 space-y-[10px]" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <ul className="text-[15px] md:text-[16px] font-semibold leading-[1.8] w-full md:w-1/2 space-y-[10px]" style={{ fontFamily: "'PP Mori', sans-serif" }}>
             {list.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
@@ -64,7 +64,7 @@ export default function ServiceBlock({
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         className="w-full md:w-[40%] flex items-start justify-end p-6 md:p-10"
       >
-        <div className="w-full max-w-[300px] aspect-square rounded-2xl overflow-hidden">
+        <div className="w-full max-w-[420px] aspect-square rounded-2xl overflow-hidden">
           {imageContent}
         </div>
       </motion.div>
@@ -87,7 +87,7 @@ export const StrategyVideo = () => (
       <div className="absolute top-6 right-6 text-sm font-bold tracking-tighter flex items-center gap-2">
         <div className="w-4 h-4 bg-white/20 rotate-45" /> strategy.mp4
       </div>
-      <h3 className="text-[28px] md:text-[32px] font-bold leading-[1.1] tracking-tighter" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <h3 className="text-[28px] md:text-[32px] font-bold leading-[1.1] tracking-tighter" style={{ fontFamily: "'PP Mori', sans-serif" }}>
         Imagination <br /> beyond limits
       </h3>
     </div>

@@ -39,7 +39,7 @@
   letter-spacing: -0.03em;
   color: #020817;
   margin-bottom: 20px;
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-primary);
 }
 
 .heroSubtitle {
@@ -185,7 +185,7 @@
   letter-spacing: -0.03em;
   color: #fff;
   margin-bottom: 20px;
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-primary);
 }
 
 .formSubtext {

@@ -108,16 +108,16 @@ export default function Insights() {
       style={{ backgroundColor }}
       className="w-full relative"
     >
-      <div className="px-6 py-14 md:py-28 max-w-[1600px] mx-auto">
+      <div className="px-6 md:px-12 py-14 md:py-28 w-full">
 
         {/* Heading row — title left, button right */}
         <div className="flex items-start justify-between gap-6 mb-10 md:mb-14">
           <Reveal>
             <motion.h2
-              style={{ color: textColor, fontFamily: "'Poppins', sans-serif", fontSize: "clamp(2rem, 6vw, 4.5rem)" }}
+              style={{ color: textColor, fontFamily: "'PP Mori', sans-serif", fontSize: "clamp(2rem, 6vw, 4.5rem)" }}
               className="font-bold leading-[1.0] tracking-tight"
             >
-              Latest insights for<br />scaleup teams
+              Latest insights for scaleup teams
             </motion.h2>
           </Reveal>
 
@@ -182,8 +182,8 @@ export default function Insights() {
                     padding: "clamp(24px, 4vw, 48px)",
                     color:
                       card.bg === "#2B59C3" || card.bg === "#0B0215"
-                        ? "#c2ba9dff"
-                        : "#1a1a1a",
+                        ? "#F4EDD9"
+                        : "#020817",
                   }}
                 >
                   <p className="text-[10px] font-bold uppercase tracking-[0.18em] mb-6 opacity-50">
@@ -193,10 +193,9 @@ export default function Insights() {
                   <p
                     className="text-sm mb-3 tracking-wide leading-snug"
                     style={{
-                      fontFamily: "Georgia, serif",
+                      fontFamily: "'Nib Pro', serif",
                       fontStyle: "italic",
                       color: card.labelColor || "inherit",
-                      opacity: card.labelColor ? 1 : 0.7,
                     }}
                   >
                     {card.label}
@@ -206,7 +205,7 @@ export default function Insights() {
                     <h3
                       className="font-bold leading-tight tracking-tighter"
                       style={{
-                        fontFamily: "'Poppins', sans-serif",
+                        fontFamily: "'PP Mori', sans-serif",
                         fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
                       }}
                     >
@@ -216,7 +215,7 @@ export default function Insights() {
                     <h3
                       className="font-bold leading-tight tracking-tight"
                       style={{
-                        fontFamily: "'Poppins', sans-serif",
+                        fontFamily: "'PP Mori', sans-serif",
                         fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)",
                       }}
                     >
@@ -270,15 +269,15 @@ export default function Insights() {
         {/* Awards */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 border-t pt-10 md:pt-16 mb-10 md:mb-20"
-          style={{ borderTopColor: borderColor, fontFamily: "'Poppins', sans-serif" }}
+          style={{ borderTopColor: borderColor, fontFamily: "'PP Mori', sans-serif" }}
         >
           <motion.h3
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            style={{ color: textColor }}
-            className="md:col-span-3 text-2xl font-playfair font-semibold tracking-tight"
+            style={{ color: textColor, fontFamily: "'Nib Pro', serif" }}
+            className="md:col-span-3 text-2xl italic font-semibold tracking-tight"
           >
             Clients:
           </motion.h3>
